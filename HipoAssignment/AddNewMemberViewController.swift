@@ -59,6 +59,7 @@ class AddNewMemberViewController: UIViewController {
     }
 
     func setupView() {
+
         view.addSubview(scrollView)
         view.addSubview(nameLabel)
         view.addSubview(nameTextField)

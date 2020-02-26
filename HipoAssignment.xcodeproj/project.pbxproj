@@ -17,6 +17,7 @@
 		47D385982406C02A007BA0BA /* AddNewMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D385972406C02A007BA0BA /* AddNewMemberViewController.swift */; };
 		47D3859B2406C147007BA0BA /* hipo.json in Resources */ = {isa = PBXBuildFile; fileRef = 47D3859A2406C147007BA0BA /* hipo.json */; };
 		47D3859E2406C18D007BA0BA /* Hipo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D3859D2406C18D007BA0BA /* Hipo.swift */; };
+		47D385A12407122E007BA0BA /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D385A02407122E007BA0BA /* UIImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		47D385972406C02A007BA0BA /* AddNewMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewMemberViewController.swift; sourceTree = "<group>"; };
 		47D3859A2406C147007BA0BA /* hipo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hipo.json; sourceTree = "<group>"; };
 		47D3859D2406C18D007BA0BA /* Hipo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hipo.swift; sourceTree = "<group>"; };
+		47D385A02407122E007BA0BA /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		47D3857D2406B45C007BA0BA /* HipoAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				47D3859F24071215007BA0BA /* Extensions */,
 				47D3859C2406C180007BA0BA /* Model */,
 				47D385992406C124007BA0BA /* Resources */,
 				47D3857E2406B45C007BA0BA /* AppDelegate.swift */,
@@ -93,6 +96,14 @@
 				47D3859D2406C18D007BA0BA /* Hipo.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		47D3859F24071215007BA0BA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				47D385A02407122E007BA0BA /* UIImage.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47D385892406B45C007BA0BA /* HipoAssignment.xcdatamodeld in Sources */,
+				47D385A12407122E007BA0BA /* UIImage.swift in Sources */,
 				47D385832406B45C007BA0BA /* MembersViewController.swift in Sources */,
 				47D385982406C02A007BA0BA /* AddNewMemberViewController.swift in Sources */,
 				47D3859E2406C18D007BA0BA /* Hipo.swift in Sources */,
