@@ -26,6 +26,7 @@ class MemberDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Emre Değirmenci"
         safeArea = view.layoutMarginsGuide
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MemberDetailCell")

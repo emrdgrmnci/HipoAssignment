@@ -21,7 +21,6 @@ class MembersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = .white
         self.title = "Members"
         safeArea = view.layoutMarginsGuide
@@ -33,7 +32,6 @@ class MembersViewController: UIViewController {
 
         setupView()
         getJSONData()
-
     }
 
     //MARK: - Setup View
@@ -92,6 +90,10 @@ class MembersViewController: UIViewController {
         print("Add New Member Button Clicked")
         let addNewMemberVC = AddNewMemberViewController()
         self.navigationController?.pushViewController(addNewMemberVC, animated: true)
+    }
+
+    func sortingMembers(with text: [String], char: Character) -> [String] {
+        return ["Kotlin", "Swift"]
     }
 }
 

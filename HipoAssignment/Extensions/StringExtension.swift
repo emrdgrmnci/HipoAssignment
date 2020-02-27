@@ -10,7 +10,16 @@ import Foundation
 import UIKit
 
 extension String {
-    func countTheRepeatedCharacters(in text:String, char: Character, characterCount: Int) -> Int {
-        return characterCount
+
+    func countInstances(of stringToFind: String) -> Int {
+        assert(!stringToFind.isEmpty)
+        var count = 0
+        var searchRange: Range<String.Index>?
+        while let foundRange = range(of: stringToFind, options: [], range: searchRange) {
+            count += 1
+            searchRange = Range(uncheckedBounds: (lower: foundRange.upperBound, upper: endIndex))
+        }
+        return count
     }
 }
+

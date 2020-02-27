@@ -11,6 +11,7 @@
 		47D2AEEA2407A4300074F54C /* HipoMember+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEE82407A4300074F54C /* HipoMember+CoreDataClass.swift */; };
 		47D2AEEB2407A4300074F54C /* HipoMember+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEE92407A4300074F54C /* HipoMember+CoreDataProperties.swift */; };
 		47D2AEED2407BC4A0074F54C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEEC2407BC4A0074F54C /* StringExtension.swift */; };
+		47D2AEF22407CBA80074F54C /* MemberDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEF12407CBA80074F54C /* MemberDetailTableViewCell.swift */; };
 		47D3857F2406B45C007BA0BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D3857E2406B45C007BA0BA /* AppDelegate.swift */; };
 		47D385812406B45C007BA0BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D385802406B45C007BA0BA /* SceneDelegate.swift */; };
 		47D385832406B45C007BA0BA /* MembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D385822406B45C007BA0BA /* MembersViewController.swift */; };
@@ -29,6 +30,7 @@
 		47D2AEE82407A4300074F54C /* HipoMember+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HipoMember+CoreDataClass.swift"; sourceTree = "<group>"; };
 		47D2AEE92407A4300074F54C /* HipoMember+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HipoMember+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		47D2AEEC2407BC4A0074F54C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		47D2AEF12407CBA80074F54C /* MemberDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetailTableViewCell.swift; sourceTree = "<group>"; };
 		47D3857B2406B45C007BA0BA /* HipoAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HipoAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47D3857E2406B45C007BA0BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47D385802406B45C007BA0BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +57,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47D2AEEE2407CB520074F54C /* MemberDetail */ = {
+			isa = PBXGroup;
+			children = (
+				47D2AEF02407CB8A0074F54C /* View */,
+				47D2AEEF2407CB7A0074F54C /* Controller */,
+			);
+			path = MemberDetail;
+			sourceTree = "<group>";
+		};
+		47D2AEEF2407CB7A0074F54C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				47D385952406BC71007BA0BA /* MemberDetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		47D2AEF02407CB8A0074F54C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				47D2AEF12407CBA80074F54C /* MemberDetailTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		47D2AEF32407CBFB0074F54C /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				47D2AEF42407CC120074F54C /* Controller */,
+			);
+			path = Member;
+			sourceTree = "<group>";
+		};
+		47D2AEF42407CC120074F54C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				47D385822406B45C007BA0BA /* MembersViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		47D2AEF52407CC2C0074F54C /* Add New Member */ = {
+			isa = PBXGroup;
+			children = (
+				47D2AEF62407CC390074F54C /* Controller */,
+			);
+			path = "Add New Member";
+			sourceTree = "<group>";
+		};
+		47D2AEF62407CC390074F54C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				47D385972406C02A007BA0BA /* AddNewMemberViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		47D2AEF72407CC4A0074F54C /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				47D2AEE82407A4300074F54C /* HipoMember+CoreDataClass.swift */,
+				47D2AEE92407A4300074F54C /* HipoMember+CoreDataProperties.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 		47D385722406B45C007BA0BA = {
 			isa = PBXGroup;
 			children = (
@@ -74,16 +142,15 @@
 		47D3857D2406B45C007BA0BA /* HipoAssignment */ = {
 			isa = PBXGroup;
 			children = (
-				47D2AEE82407A4300074F54C /* HipoMember+CoreDataClass.swift */,
-				47D2AEE92407A4300074F54C /* HipoMember+CoreDataProperties.swift */,
+				47D2AEF72407CC4A0074F54C /* Core Data */,
+				47D2AEF52407CC2C0074F54C /* Add New Member */,
+				47D2AEF32407CBFB0074F54C /* Member */,
+				47D2AEEE2407CB520074F54C /* MemberDetail */,
 				47D3859F24071215007BA0BA /* Extensions */,
 				47D3859C2406C180007BA0BA /* Model */,
 				47D385992406C124007BA0BA /* Resources */,
 				47D3857E2406B45C007BA0BA /* AppDelegate.swift */,
 				47D385802406B45C007BA0BA /* SceneDelegate.swift */,
-				47D385972406C02A007BA0BA /* AddNewMemberViewController.swift */,
-				47D385822406B45C007BA0BA /* MembersViewController.swift */,
-				47D385952406BC71007BA0BA /* MemberDetailViewController.swift */,
 				47D3858A2406B45F007BA0BA /* Assets.xcassets */,
 				47D3858C2406B45F007BA0BA /* LaunchScreen.storyboard */,
 				47D3858F2406B45F007BA0BA /* Info.plist */,
@@ -195,6 +262,7 @@
 				47D2AEEA2407A4300074F54C /* HipoMember+CoreDataClass.swift in Sources */,
 				47D385982406C02A007BA0BA /* AddNewMemberViewController.swift in Sources */,
 				47D3859E2406C18D007BA0BA /* Hipo.swift in Sources */,
+				47D2AEF22407CBA80074F54C /* MemberDetailTableViewCell.swift in Sources */,
 				47D3857F2406B45C007BA0BA /* AppDelegate.swift in Sources */,
 				47D385962406BC71007BA0BA /* MemberDetailViewController.swift in Sources */,
 				47D2AEED2407BC4A0074F54C /* StringExtension.swift in Sources */,

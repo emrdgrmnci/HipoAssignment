@@ -61,7 +61,7 @@ class AddNewMemberViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "Add New Member"
         //        nameTextField.delegate = self
         setupView()
 
