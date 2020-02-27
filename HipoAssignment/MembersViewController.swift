@@ -85,6 +85,7 @@ class MembersViewController: UIViewController {
     //MARK: - Sort Members Button Click
     @objc func sortMembersButtonClicked(_ sender: UIButton?) {
         print("Sort Button Clicked")
+
     }
     //MARK: - Add New Member Button Click
     @objc func addNewMemberButtonClicked(_ sender: UIButton?) {

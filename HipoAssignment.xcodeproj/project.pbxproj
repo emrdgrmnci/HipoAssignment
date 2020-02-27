@@ -10,6 +10,7 @@
 		47D2AEE72407A1CA0074F54C /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEE62407A1CA0074F54C /* PersistenceService.swift */; };
 		47D2AEEA2407A4300074F54C /* HipoMember+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEE82407A4300074F54C /* HipoMember+CoreDataClass.swift */; };
 		47D2AEEB2407A4300074F54C /* HipoMember+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEE92407A4300074F54C /* HipoMember+CoreDataProperties.swift */; };
+		47D2AEED2407BC4A0074F54C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEEC2407BC4A0074F54C /* StringExtension.swift */; };
 		47D3857F2406B45C007BA0BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D3857E2406B45C007BA0BA /* AppDelegate.swift */; };
 		47D385812406B45C007BA0BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D385802406B45C007BA0BA /* SceneDelegate.swift */; };
 		47D385832406B45C007BA0BA /* MembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D385822406B45C007BA0BA /* MembersViewController.swift */; };
@@ -27,6 +28,7 @@
 		47D2AEE62407A1CA0074F54C /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		47D2AEE82407A4300074F54C /* HipoMember+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HipoMember+CoreDataClass.swift"; sourceTree = "<group>"; };
 		47D2AEE92407A4300074F54C /* HipoMember+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HipoMember+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		47D2AEEC2407BC4A0074F54C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		47D3857B2406B45C007BA0BA /* HipoAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HipoAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47D3857E2406B45C007BA0BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47D385802406B45C007BA0BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				47D385A02407122E007BA0BA /* UIImage.swift */,
+				47D2AEEC2407BC4A0074F54C /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				47D3859E2406C18D007BA0BA /* Hipo.swift in Sources */,
 				47D3857F2406B45C007BA0BA /* AppDelegate.swift in Sources */,
 				47D385962406BC71007BA0BA /* MemberDetailViewController.swift in Sources */,
+				47D2AEED2407BC4A0074F54C /* StringExtension.swift in Sources */,
 				47D2AEE72407A1CA0074F54C /* PersistenceService.swift in Sources */,
 				47D2AEEB2407A4300074F54C /* HipoMember+CoreDataProperties.swift in Sources */,
 				47D385812406B45C007BA0BA /* SceneDelegate.swift in Sources */,
