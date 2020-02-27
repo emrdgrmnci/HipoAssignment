@@ -11,8 +11,8 @@ import UIKit
 class MembersViewController: UIViewController {
     //UI Components
     lazy var tableView = UITableView()
-    lazy var sortMembersButton = UIButton()
-    lazy var addNewMemberButton = UIButton()
+    @objc lazy var sortMembersButton = UIButton()
+    @objc lazy var addNewMemberButton = UIButton()
     lazy var buttonStackView = UIStackView()
 
     var hipoMembers: Hipo? = nil
@@ -28,8 +28,12 @@ class MembersViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MembersCell")
 
+        addNewMemberButton.addTarget(self, action:#selector(self.addNewMemberButtonClicked), for: .touchUpInside)
+        sortMembersButton.addTarget(self, action:#selector(self.sortMembersButtonClicked), for: .touchUpInside)
+
         setupView()
         getJSONData()
+
     }
 
     //MARK: - Setup View
@@ -78,6 +82,16 @@ class MembersViewController: UIViewController {
             tableView.reloadData()
         } catch { print(error) }
     }
+    //MARK: - Sort Members Button Click
+    @objc func sortMembersButtonClicked(_ sender: UIButton?) {
+        print("Sort Button Clicked")
+    }
+    //MARK: - Add New Member Button Click
+    @objc func addNewMemberButtonClicked(_ sender: UIButton?) {
+        print("Add New Member Button Clicked")
+        let addNewMemberVC = AddNewMemberViewController()
+        self.navigationController?.pushViewController(addNewMemberVC, animated: true)
+    }
 }
 
 //MARK: - UITableViewDataSource
@@ -97,9 +111,9 @@ extension MembersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let members = hipoMembers!.members[indexPath.row]
         let detailController = AddNewMemberViewController()
-//        detailController.memeImage = meme.memedImage //Pass image like this
-//         self.navigationController?.pushViewController(detailController, animated: true)
-//        self.tableView.deselectRow(at: indexPath, animated: true)
+        //        detailController.memeImage = meme.memedImage //Pass image like this
+        //         self.navigationController?.pushViewController(detailController, animated: true)
+        //        self.tableView.deselectRow(at: indexPath, animated: true)
         present(detailController,animated: true,completion: nil)
     }
 }
