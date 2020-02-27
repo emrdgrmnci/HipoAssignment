@@ -28,7 +28,7 @@ class AddNewMemberViewController: UIViewController {
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentSize.height = 650
+        view.contentSize.height = 900
         view.backgroundColor = .white
 
         return view

@@ -16,6 +16,8 @@ class MembersViewController: UIViewController {
     lazy var buttonStackView = UIStackView()
 
     var hipoMembers: Hipo? = nil
+    var githubInfo: Github? = nil
+    var repoElement: Repo? = nil
 
     var safeArea: UILayoutGuide!
 
@@ -25,6 +27,7 @@ class MembersViewController: UIViewController {
         self.title = "Members"
         safeArea = view.layoutMarginsGuide
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MembersCell")
 
         addNewMemberButton.addTarget(self, action:#selector(self.addNewMemberButtonClicked), for: .touchUpInside)
@@ -80,6 +83,45 @@ class MembersViewController: UIViewController {
             tableView.reloadData()
         } catch { print(error) }
     }
+
+    func getGithubData(with userName: String) {
+        let jsonUrlString = "https://api.github.com/users/\(userName)"
+        let url = URL(string: jsonUrlString)
+
+        URLSession.shared.dataTask(with: url!) { (data, response, err) in
+
+            guard let data = data else { return }
+
+            do {
+                let github = try JSONDecoder().decode(Github.self, from: data)
+                print("(GITHUB_____---->>>\(github)")
+
+
+            }catch let jsonErr {
+                print(jsonErr.localizedDescription)
+            }
+
+        }.resume()
+    }
+
+    func getGithubRepoData(with userName: String) {
+        let jsonUrlString = "https://api.github.com/users/\(userName)/repos"
+        let url = URL(string: jsonUrlString)
+
+        URLSession.shared.dataTask(with: url!) { (data, response, err) in
+
+            guard let data = data else { return }
+
+            do {
+                let repo = try JSONDecoder().decode(Repo.self, from: data)
+                print("(GITHUB_____---->>>\(repo)")
+
+            }catch let jsonErr {
+                print(jsonErr.localizedDescription)
+            }
+        }.resume()
+    }
+
     //MARK: - Sort Members Button Click
     @objc func sortMembersButtonClicked(_ sender: UIButton?) {
         print("Sort Button Clicked")
@@ -107,17 +149,25 @@ extension MembersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MembersCell", for: indexPath)
         cell.textLabel?.text = hipoMembers?.members[indexPath.row].name
+        cell.detailTextLabel?.text = hipoMembers?.members[indexPath.row].github
         cell.accessoryType = .disclosureIndicator
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let members = hipoMembers!.members[indexPath.row]
-        let detailController = AddNewMemberViewController()
-        //        detailController.memeImage = meme.memedImage //Pass image like this
-        //         self.navigationController?.pushViewController(detailController, animated: true)
-        //        self.tableView.deselectRow(at: indexPath, animated: true)
-        present(detailController,animated: true,completion: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
+        let memberDetailController = MemberDetailViewController()
+        self.navigationController?.pushViewController(memberDetailController, animated: true)
+        memberDetailController.delegate = self
+        getGithubData(with: hipoMembers!.members[indexPath.row].github)//username added end of the url path from github
+        getGithubRepoData(with: hipoMembers!.members[indexPath.row].github)
+        memberDetailController.selectedDetailUserName = hipoMembers!.members[indexPath.row].name
+//        memberDetailController.selectedDetailFollowerCount = githubInfo!.followers
+//        memberDetailController.selectedDetailLanguage = repoElement!.language
+        
+//        memberDetailController.selectedDetailLanguage = repoElement!.language
+
+//        memberDetailController.selectedDetailUserName = hipoMembers!.members[indexPath.row].github
     }
 }
 

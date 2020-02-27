@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		471ADCE32407E716004E9033 /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471ADCE22407E716004E9033 /* Github.swift */; };
+		471ADCE52407EBA3004E9033 /* GithubRepoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471ADCE42407EBA3004E9033 /* GithubRepoRequest.swift */; };
+		471ADCE72407F2EE004E9033 /* GithubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471ADCE62407F2EE004E9033 /* GithubRequest.swift */; };
 		47D2AEE72407A1CA0074F54C /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEE62407A1CA0074F54C /* PersistenceService.swift */; };
 		47D2AEEA2407A4300074F54C /* HipoMember+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEE82407A4300074F54C /* HipoMember+CoreDataClass.swift */; };
 		47D2AEEB2407A4300074F54C /* HipoMember+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEE92407A4300074F54C /* HipoMember+CoreDataProperties.swift */; };
@@ -26,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		471ADCE22407E716004E9033 /* Github.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Github.swift; sourceTree = "<group>"; };
+		471ADCE42407EBA3004E9033 /* GithubRepoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepoRequest.swift; sourceTree = "<group>"; };
+		471ADCE62407F2EE004E9033 /* GithubRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRequest.swift; sourceTree = "<group>"; };
 		47D2AEE62407A1CA0074F54C /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		47D2AEE82407A4300074F54C /* HipoMember+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HipoMember+CoreDataClass.swift"; sourceTree = "<group>"; };
 		47D2AEE92407A4300074F54C /* HipoMember+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HipoMember+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -156,6 +162,8 @@
 				47D3858F2406B45F007BA0BA /* Info.plist */,
 				47D385872406B45C007BA0BA /* HipoAssignment.xcdatamodeld */,
 				47D2AEE62407A1CA0074F54C /* PersistenceService.swift */,
+				471ADCE42407EBA3004E9033 /* GithubRepoRequest.swift */,
+				471ADCE62407F2EE004E9033 /* GithubRequest.swift */,
 			);
 			path = HipoAssignment;
 			sourceTree = "<group>";
@@ -172,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				47D3859D2406C18D007BA0BA /* Hipo.swift */,
+				471ADCE22407E716004E9033 /* Github.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -260,10 +269,13 @@
 				47D385A12407122E007BA0BA /* UIImage.swift in Sources */,
 				47D385832406B45C007BA0BA /* MembersViewController.swift in Sources */,
 				47D2AEEA2407A4300074F54C /* HipoMember+CoreDataClass.swift in Sources */,
+				471ADCE32407E716004E9033 /* Github.swift in Sources */,
 				47D385982406C02A007BA0BA /* AddNewMemberViewController.swift in Sources */,
 				47D3859E2406C18D007BA0BA /* Hipo.swift in Sources */,
 				47D2AEF22407CBA80074F54C /* MemberDetailTableViewCell.swift in Sources */,
 				47D3857F2406B45C007BA0BA /* AppDelegate.swift in Sources */,
+				471ADCE52407EBA3004E9033 /* GithubRepoRequest.swift in Sources */,
+				471ADCE72407F2EE004E9033 /* GithubRequest.swift in Sources */,
 				47D385962406BC71007BA0BA /* MemberDetailViewController.swift in Sources */,
 				47D2AEED2407BC4A0074F54C /* StringExtension.swift in Sources */,
 				47D2AEE72407A1CA0074F54C /* PersistenceService.swift in Sources */,

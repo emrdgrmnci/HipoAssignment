@@ -31,8 +31,21 @@ class MemberDetailTableViewCell: UITableViewCell {
 
     func setupView() {
         repoNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        repoNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-repoNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12).isActive = true
-        
+//        repoNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        repoNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+
+        languageLabel.translatesAutoresizingMaskIntoConstraints = false
+//        languageLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        languageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+        languageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12).isActive = true
+
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+//        dateLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        dateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+
+        starLabel.translatesAutoresizingMaskIntoConstraints = false
+//        starLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        starLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        starLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12).isActive = true
     }
 }

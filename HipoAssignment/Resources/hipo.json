@@ -13,6 +13,16 @@
       }
     },
     {
+      "name": "Emre Değirmenci",
+      "age": 25,
+      "location": "Izmir",
+      "github": "emrdgrmnci",
+      "hipo": {
+        "position": "iOS Developer Intern",
+        "years_in_hipo": 0
+      }
+    },
+    {
       "name": "Ömer Emre Aslan",
       "age": 26,
       "location": "Istanbul",

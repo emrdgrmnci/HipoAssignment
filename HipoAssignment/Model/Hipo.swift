@@ -18,7 +18,7 @@ struct Hipo: Codable {
 struct Member: Codable {
     let name: String
     let age: Int
-    let location, github: String
+    let location, github: String //member github username
     let hipo: HipoClass
 }
 

@@ -22,9 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         let membersVC = MembersViewController()
         let memberDetailVC = MemberDetailViewController()
-        let addNewMemberVC = AddNewMemberViewController()
         navigationController = UINavigationController(rootViewController: membersVC)
-        navigationController!.viewControllers = [membersVC,addNewMemberVC, memberDetailVC]
+//        navigationController!.viewControllers = [addNewMemberVC]
         self.window!.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }
