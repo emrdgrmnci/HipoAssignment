@@ -12,12 +12,11 @@ import UIKit
 extension String {
 
     func countInstances(of stringToFind: String) -> Int {
-        assert(!stringToFind.isEmpty)
         var count = 0
         var searchRange: Range<String.Index>?
-        while let foundRange = range(of: stringToFind, options: [], range: searchRange) {
+        while let foundedRange = range(of: stringToFind, options: [], range: searchRange) {
             count += 1
-            searchRange = Range(uncheckedBounds: (lower: foundRange.upperBound, upper: endIndex))
+            searchRange = Range(uncheckedBounds: (lower: foundedRange.upperBound, upper: endIndex))
         }
         return count
     }

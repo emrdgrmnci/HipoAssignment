@@ -13,8 +13,8 @@ class MemberDetailViewController: UIViewController {
 
     var selectedUserData: String = ""
     var selectedDetailUserName: String = ""
-    var selectedDetailFollowerCount: Int = 0
-    var selectedDetailFollowingCount: Int = 0
+    var selectedDetailFollowerCount: Int?
+    var selectedDetailFollowingCount: Int?
     var selectedDetailRepoName: String = ""
     var selectedDetailRepoDate: String = ""
     var selectedDetailLanguage: String = ""
@@ -46,7 +46,7 @@ class MemberDetailViewController: UIViewController {
         safeArea = view.layoutMarginsGuide
 
         self.title = selectedDetailUserName
-//        self.followersLabel.text = "\(selectedDetailFollowerCount)"
+        self.followersLabel.text = "\(selectedDetailFollowerCount)"
 
 
         tableView.dataSource = self

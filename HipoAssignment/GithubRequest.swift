@@ -13,7 +13,7 @@ import Foundation
 //    case canNotProcessData
 //}
 //
-struct GithubRequest {
+class GithubRequest {
     let resourceGithubURL: URL
     let resourceRepoURL: URL
 //
@@ -25,6 +25,9 @@ struct GithubRequest {
         let resourceRepoString = "https://api.github.com/users/\(userName)/repos"
              guard let resourceRepoURL = URL(string: resourceGithubString) else {fatalError()}
              self.resourceRepoURL = resourceRepoURL
+
+        getGithubData()
+        getGithubRepoData()
     }
 //
 //
@@ -76,9 +79,9 @@ func getGithubRepoData() {
         guard let data = data else { return }
 
         do {
-            let repoElementResponse = try JSONDecoder().decode(Repo.self, from: data)
+            let repoElementResponse = try JSONDecoder().decode(RepoElement.self, from: data)
             let repoElementDetails = repoElementResponse
-            print("(GITHUB_____---->>>\(repoElementDetails)")
+            print("(GITHUBREPO_____---->>>\(repoElementDetails)")
         }catch let jsonErr {
             print(jsonErr.localizedDescription)
         }

@@ -11,10 +11,10 @@ import Foundation
 
 class MembersViewController: UIViewController {
     //UI Components
-    lazy var tableView = UITableView()
+    var tableView = UITableView()
     @objc lazy var sortMembersButton = UIButton()
     @objc lazy var addNewMemberButton = UIButton()
-    lazy var buttonStackView = UIStackView()
+    var buttonStackView = UIStackView()
 
     var hipoMembers: Hipo? = nil
     var githubInfo = [Github]()
@@ -24,9 +24,14 @@ class MembersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = .white
         self.title = "Members"
+
+        getJSONData()
+
         safeArea = view.layoutMarginsGuide
+
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MembersCell")
@@ -35,9 +40,6 @@ class MembersViewController: UIViewController {
         sortMembersButton.addTarget(self, action:#selector(self.sortMembersButtonClicked), for: .touchUpInside)
 
         setupView()
-        getJSONData()
-        
-
     }
 
     //MARK: - Setup View
@@ -90,8 +92,11 @@ class MembersViewController: UIViewController {
     //MARK: - Sort Members Button Click
     @objc func sortMembersButtonClicked(_ sender: UIButton?) {
         print("Sort Button Clicked")
-
+        hipoMembers?.members.forEach {
+            print("\($0.name.countInstances(of: "a"))")
     }
+    }
+
     //MARK: - Add New Member Button Click
     @objc func addNewMemberButtonClicked(_ sender: UIButton?) {
         print("Add New Member Button Clicked")
@@ -121,6 +126,7 @@ extension MembersViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        tableView.reloadData()
 
         let githubUsername = hipoMembers!.members[indexPath.row].github //github username
         let githubRequest = GithubRequest(userName: githubUsername)
@@ -130,17 +136,19 @@ extension MembersViewController: UITableViewDataSource, UITableViewDelegate {
         let memberDetailController = MemberDetailViewController()
         self.navigationController?.pushViewController(memberDetailController, animated: true)
         memberDetailController.delegate = self
-//        getGithubData(with: hipoMembers!.members[indexPath.row].github)//username added end of the url path from github
-//        getGithubRepoData(with: hipoMembers!.members[indexPath.row].github)
+        //        getGithubData(with: hipoMembers!.members[indexPath.row].github)//username added end of the url path from github
+        //        getGithubRepoData(with: hipoMembers!.members[indexPath.row].github)
 
         memberDetailController.selectedDetailUserName = self.hipoMembers!.members[indexPath.row].name
-        memberDetailController.selectedDetailLanguage = self.repoElement![indexPath.row].language
+        //        memberDetailController.selectedDetailFollowerCount = self.githubInfo[indexPath.row].followers
+        //        memberDetailController.selectedDetailFollowingCount = self.githubInfo[indexPath.row].following
+//                memberDetailController.selectedDetailLanguage = self.repoElement![indexPath.row].language
 
-//        memberDetailController.selectedDetailLanguage = repoElement!.language
+        //        memberDetailController.selectedDetailLanguage = repoElement!.language
         
-//        memberDetailController.selectedDetailLanguage = repoElement!.language
+        //        memberDetailController.selectedDetailLanguage = repoElement!.language
 
-//        memberDetailController.selectedDetailUserName = hipoMembers!.members[indexPath.row].github
+        memberDetailController.selectedDetailUserName = hipoMembers!.members[indexPath.row].github
     }
 }
 
