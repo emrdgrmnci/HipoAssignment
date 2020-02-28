@@ -18,7 +18,7 @@ class MembersViewController: UIViewController {
 
     var hipoMembers: Hipo? = nil
     var githubInfo = [Github]()
-    var repoElement:Repo? = nil
+//    var repoElement:Repo? = nil
 
     var safeArea: UILayoutGuide!
 
@@ -93,7 +93,9 @@ class MembersViewController: UIViewController {
     @objc func sortMembersButtonClicked(_ sender: UIButton?) {
         print("Sort Button Clicked")
         hipoMembers?.members.forEach {
+            sortingMembers(with: [$0.name], char: "a")
             print("\($0.name.countInstances(of: "a"))")
+            print("\($0.name)")
     }
     }
 
@@ -105,7 +107,7 @@ class MembersViewController: UIViewController {
     }
 
     func sortingMembers(with text: [String], char: Character) -> [String] {
-        return ["Kotlin", "Swift"]
+        return ["Swift", "Kotlin"]
     }
 }
 
@@ -126,28 +128,12 @@ extension MembersViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        tableView.reloadData()
 
         let githubUsername = hipoMembers!.members[indexPath.row].github //github username
-        let githubRequest = GithubRequest(userName: githubUsername)
-        githubRequest.getGithubData()
-        githubRequest.getGithubRepoData()
-
         let memberDetailController = MemberDetailViewController()
         self.navigationController?.pushViewController(memberDetailController, animated: true)
         memberDetailController.delegate = self
-        //        getGithubData(with: hipoMembers!.members[indexPath.row].github)//username added end of the url path from github
-        //        getGithubRepoData(with: hipoMembers!.members[indexPath.row].github)
-
         memberDetailController.selectedDetailUserName = self.hipoMembers!.members[indexPath.row].name
-        //        memberDetailController.selectedDetailFollowerCount = self.githubInfo[indexPath.row].followers
-        //        memberDetailController.selectedDetailFollowingCount = self.githubInfo[indexPath.row].following
-//                memberDetailController.selectedDetailLanguage = self.repoElement![indexPath.row].language
-
-        //        memberDetailController.selectedDetailLanguage = repoElement!.language
-        
-        //        memberDetailController.selectedDetailLanguage = repoElement!.language
-
         memberDetailController.selectedDetailUserName = hipoMembers!.members[indexPath.row].github
     }
 }

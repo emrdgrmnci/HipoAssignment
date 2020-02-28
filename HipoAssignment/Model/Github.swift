@@ -1,4 +1,4 @@
-//
+
 //  Github.swift
 //  HipoAssignment
 //
@@ -9,9 +9,9 @@
 import Foundation
 
 struct Github: Codable {
-    let avatarURL: String
-    let name: String
-    let followers, following: Int
+    let avatarURL: String?
+    let name: String?
+    let followers, following: Int?
 
     enum CodingKeys: String, CodingKey {
         case avatarURL = "avatar_url"
@@ -20,18 +20,20 @@ struct Github: Codable {
     }
 }
 
-struct RepoElement: Codable {
-    let name: String
-    let updatedAt: String
-    let stargazersCount: Int
-    let language: String
+//struct RepoElement: Codable {
+//    let name: String?
+//    let updatedAt: String?
+//    let stargazersCount: Int?
+//    let language: String?
+//
+//    enum CodingKeys: String, CodingKey {
+//        case name
+//        case updatedAt = "updated_at"
+//        case stargazersCount = "stargazers_count"
+//        case language
+//    }
+//
+//    typealias Repo = [RepoElement]
+//}
 
-    enum CodingKeys: String, CodingKey {
-        case name
-        case updatedAt = "updated_at"
-        case stargazersCount = "stargazers_count"
-        case language
-    }
-}
 
-typealias Repo = [RepoElement]

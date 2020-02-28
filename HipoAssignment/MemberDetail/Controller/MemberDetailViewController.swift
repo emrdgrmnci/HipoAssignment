@@ -9,7 +9,29 @@
 import UIKit
 import Foundation
 
+//   let repo = try? newJSONDecoder().decode(Repo.self, from: jsonData)
+
+// MARK: - RepoElement
+struct RepoElement: Codable {
+    let name: String?
+    let updatedAt: Date?
+    let stargazersCount: Int?
+    let language: String?
+
+    enum CodingKeys: String, CodingKey {
+        case name
+        case updatedAt = "updated_at"
+        case stargazersCount = "stargazers_count"
+        case language
+    }
+}
+
+typealias Repo = [RepoElement]
+
 class MemberDetailViewController: UIViewController {
+final let url = URL(string: "https://api.github.com/users/emrdgrmnci/repos")
+
+    private var repos: Repo?
 
     var selectedUserData: String = ""
     var selectedDetailUserName: String = ""
@@ -25,6 +47,7 @@ class MemberDetailViewController: UIViewController {
     var tableView = UITableView()
     var followersLabel = UILabel()
     var followingLabel = UILabel()
+    var imageView = UIImageView()
 
     var profileView: UIView = {
         let view = UIView()
@@ -33,20 +56,18 @@ class MemberDetailViewController: UIViewController {
         return view
     }()
 
-    lazy var imageView = UIImageView()
-
-    var github: Github?
-    var githubRepo: RepoElement? 
+    var github = [Github]()
+//    var githubRepo: Repo?
 
     var safeArea: UILayoutGuide!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getGithubData()
         print(selectedUserData)
         safeArea = view.layoutMarginsGuide
 
         self.title = selectedDetailUserName
-        self.followersLabel.text = "\(selectedDetailFollowerCount)"
 
 
         tableView.dataSource = self
@@ -101,29 +122,63 @@ class MemberDetailViewController: UIViewController {
         tableView.register(MemberDetailTableViewCell.self, forCellReuseIdentifier: "MemberDetailTableViewCell")
         tableView.rowHeight = 60
     }
-
-    func githubRequest() {
-
+    //MARK: - Get apiData
+    func getGithubData() {
+        guard let downloadURL = url else { return }
+        URLSession.shared.dataTask(with: downloadURL) { data, urlResponse, error in
+            guard let data = data, error == nil, urlResponse != nil else {
+                print("something is wrong")
+                return
+            }
+            print("downloaded")
+            do
+            {
+                let decoder = JSONDecoder()
+                let downloadedRepos = try decoder.decode(Repo.self, from: data)
+                self.repos = downloadedRepos
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } catch {
+                print("something wrong after downloaded")
+            }
+        }.resume()
+        }
     }
 
+//    func getRepoData() {
+//        GithubRequest.shared.getRepoData { (response) in
+////            self.githubRepo = response
+//        }
+//    }
 
-}
 
 extension MemberDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Repositories"
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return repos!.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-let cell = tableView.dequeueReusableCell(withIdentifier: "MemberDetailTableViewCell", for: indexPath) as! MemberDetailTableViewCell
-        cell.repoNameLabel.text = selectedDetailRepoName
-        cell.dateLabel.text = githubRepo?.updatedAt
-//        cell.languageLabel.text = githubRepo!.language
-        cell.starLabel.text = "⭐️\(String(describing: githubRepo?.stargazersCount))"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MemberDetailCell", for: indexPath) as! MemberDetailTableViewCell
+        cell.languageLabel.text = repos![indexPath.row].language
         return cell
     }
 }
+
+/*
+if let imageURL = URL(string: actors[indexPath.row].image) {
+          DispatchQueue.global().async {
+              let data = try? Data(contentsOf: imageURL)
+              if let data = data {
+                  let image = UIImage(data: data)
+                  DispatchQueue.main.async {
+                      cell.imgView.image = image
+                  }
+              }
+          }
+      }
+*/
 
