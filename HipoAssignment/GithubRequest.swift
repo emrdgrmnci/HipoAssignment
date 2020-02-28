@@ -6,21 +6,26 @@
 ////  Copyright © 2020 Ali Emre Degirmenci. All rights reserved.
 ////
 //
-//import Foundation
+import Foundation
 //
 //enum GithubError: Error {
 //    case noDataAvailable
 //    case canNotProcessData
 //}
 //
-//struct GithubRequest {
-//    let resourceURL : URL
+struct GithubRequest {
+    let resourceGithubURL: URL
+    let resourceRepoURL: URL
 //
-//    init(userName: String) {
-//        let resourceString = "https://api.github.com/users/emrdgrmnci"
-//        guard let resourceURL = URL(string: resourceString) else { fatalError()}
-//        self.resourceURL = resourceURL
-//    }
+    init(userName: String) {
+        let resourceGithubString = "https://api.github.com/users/\(userName)"
+        guard let resourceGithubURL = URL(string: resourceGithubString) else {fatalError()}
+        self.resourceGithubURL = resourceGithubURL
+
+        let resourceRepoString = "https://api.github.com/users/\(userName)/repos"
+             guard let resourceRepoURL = URL(string: resourceGithubString) else {fatalError()}
+             self.resourceRepoURL = resourceRepoURL
+    }
 //
 //
 //    func getGithub(completion: @escaping(Result<Github, GithubError>) -> Void) {
@@ -42,3 +47,41 @@
 //        dataTask.resume()
 //    }
 //}
+
+func getGithubData() {
+//    let jsonUrlString = "https://api.github.com/users/\(userName)"
+//    guard let resourceURL = URL(string: jsonUrlString) else { fatalError()}
+    URLSession.shared.dataTask(with: resourceGithubURL) { (data, response, err) in
+
+        guard let data = data else { return }
+
+        do {
+             let githubInfoResponse = try JSONDecoder().decode(Github.self, from: data)
+            let githubDetails = githubInfoResponse
+            print("(GITHUB_____---->>>\(githubDetails)")
+        }catch let jsonErr {
+            print(jsonErr.localizedDescription)
+        }
+
+    }.resume()
+}
+
+func getGithubRepoData() {
+
+//    let jsonUrlString = "https://api.github.com/users/\(userName)/repos"
+//    let url = URL(string: jsonUrlString)
+
+    URLSession.shared.dataTask(with: resourceRepoURL) { (data, response, err) in
+
+        guard let data = data else { return }
+
+        do {
+            let repoElementResponse = try JSONDecoder().decode(Repo.self, from: data)
+            let repoElementDetails = repoElementResponse
+            print("(GITHUB_____---->>>\(repoElementDetails)")
+        }catch let jsonErr {
+            print(jsonErr.localizedDescription)
+        }
+    }.resume()
+}
+}
