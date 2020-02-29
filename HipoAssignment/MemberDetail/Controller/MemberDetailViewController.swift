@@ -10,19 +10,18 @@ import UIKit
 import Foundation
 
 class MemberDetailViewController: UIViewController {
-    //final let url = URL(string: "https://api.github.com/users/emrdgrmnci/repos")
 
     var repos = [Repo]()
     var github: Github?
 
-    var selectedUserData: String = ""
+//    var selectedUserData: String = ""
     var selectedDetailUserName: String = ""
-    var selectedDetailFollowerCount: Int?
-    var selectedDetailFollowingCount: Int?
-    var selectedDetailRepoName: String = ""
-    var selectedDetailRepoDate: String = ""
-    var selectedDetailLanguage: String = ""
-    var selectedDetailRepoStar: String = ""
+//    var selectedDetailFollowerCount: Int?
+//    var selectedDetailFollowingCount: Int?
+//    var selectedDetailRepoName: String = ""
+//    var selectedDetailRepoDate: String = ""
+//    var selectedDetailLanguage: String = ""
+//    var selectedDetailRepoStar: String = ""
 
     weak var delegate: MembersViewController!
 
@@ -58,7 +57,7 @@ class MemberDetailViewController: UIViewController {
 
     func getGithubData(){
         GithubRequest.getGithubData(userName: selectedDetailUserName) { (result) in
-           guard let avatarUrl = result.avatar_url, let url = URL(string: avatarUrl), let data = try? Data(contentsOf: url) else { return }
+            guard let avatarUrl = result.avatar_url, let url = URL(string: avatarUrl), let data = try? Data(contentsOf: url) else { return }
             DispatchQueue.main.async {
                 self.imageView.image=UIImage(data: data as Data)
                 self.followersLabel.text = "Followers \(result.followers ?? 0)"
@@ -113,7 +112,6 @@ class MemberDetailViewController: UIViewController {
         followingLabel.translatesAutoresizingMaskIntoConstraints = false
         followingLabel.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor, constant: 80).isActive = true
         followingLabel.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 120).isActive = true
-
 
         //MARK: -  tableView layouts
         tableView.translatesAutoresizingMaskIntoConstraints = false

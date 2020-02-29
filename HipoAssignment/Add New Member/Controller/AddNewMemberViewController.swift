@@ -35,12 +35,12 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         return view
     }()
 
-    lazy var nameTextField          =    UITextField()
-    lazy var positionTextField      = UITextField()
-    lazy var ageTextField           =     UITextField()
-    lazy var locationTextField      = UITextField()
-    lazy var yearsInHipoTextField   = UITextField()
-    lazy var githubTextField        =      UITextField()
+    lazy var nameTextField = UITextField()
+    lazy var positionTextField = UITextField()
+    lazy var ageTextField = UITextField()
+    lazy var locationTextField = UITextField()
+    lazy var yearsInHipoTextField = UITextField()
+    lazy var githubTextField = UITextField()
 
     var safeArea: UILayoutGuide!
 
@@ -50,18 +50,10 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
 
         nameTextField.delegate = self
         positionTextField.delegate = self
-        ageTextField.delegate = self
         locationTextField.delegate = self
-        yearsInHipoTextField.delegate = self
         githubTextField.delegate = self
-
-        //nameTextField
-        //positionTextField
-        ageTextField.keyboardType = .numberPad
-        //locationTextField
-        yearsInHipoTextField.keyboardType = .numberPad
-        //githubTextField
-
+        yearsInHipoTextField.delegate = self
+        ageTextField.delegate = self
 
         setupView()
         getUserDefaults()
@@ -76,17 +68,28 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-      if textField == nameTextField || textField == positionTextField || textField == locationTextField {
-                  let allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-                  let allowedCharacterSet = CharacterSet(charactersIn: allowedCharacters)
-                  let typedCharacterSet = CharacterSet(charactersIn: string)
-                  let alphabet = allowedCharacterSet.isSuperset(of: typedCharacterSet)
-                  return alphabet
-        } else {
-
-        return false
-      }
-    }
+        if textField == nameTextField || textField == positionTextField || textField == locationTextField {
+            let allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+            let allowedCharacterSet = CharacterSet(charactersIn: allowedCharacters)
+            let typedCharacterSet = CharacterSet(charactersIn: string)
+            let alphabet = allowedCharacterSet.isSuperset(of: typedCharacterSet)
+            return alphabet
+        } else if textField == ageTextField || textField == yearsInHipoTextField {
+            let allowedCharacters = CharacterSet.decimalDigits
+            let characterSet = CharacterSet(charactersIn: string)
+            return allowedCharacters.isSuperset(of: characterSet)
+        }
+        else if textField == githubTextField {
+            let allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_!'^+%&/()=?,;:."
+            let allowedCharacterSet = CharacterSet(charactersIn: allowedCharacters)
+            let typedCharacterSet = CharacterSet(charactersIn: string)
+            let all = allowedCharacterSet.isSuperset(of: typedCharacterSet)
+            return all
+        }
+        else {
+            return false
+        }
+        }
 
     //MARK: - Setup View
     func setupView() {
@@ -307,6 +310,7 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
 
     //MARK: - Save localdata(CoreData)
     func saveLocalData() {
+
         //UserDefaults
         saveUserDefaults()
 
@@ -322,7 +326,6 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         saveNewMember.setValue(Int(yearsInHipoTextField.text ?? "0"), forKey: "years_in_hipo")
         do {
             try context.save()
-            //            self.showAlert(withTitle: "Saved", withMessage: "New member saved successfully!")
             let alert = UIAlertController (title: "SAVED", message: "New member saved successfully!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ (alertOKAction) in
                 self.dismiss(animated: false, completion: nil)
