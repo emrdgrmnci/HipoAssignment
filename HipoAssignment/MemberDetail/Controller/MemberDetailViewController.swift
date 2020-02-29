@@ -10,11 +10,10 @@ import UIKit
 import Foundation
 
 class MemberDetailViewController: UIViewController {
-//final let url = URL(string: "https://api.github.com/users/emrdgrmnci/repos")
+    //final let url = URL(string: "https://api.github.com/users/emrdgrmnci/repos")
 
     var repos = [Repo]()
     var github: Github?
-
 
     var selectedUserData: String = ""
     var selectedDetailUserName: String = ""
@@ -44,21 +43,37 @@ class MemberDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getGithubRepoData()
         getGithubData()
+        getGithubRepoData()
 
-        print(selectedUserData)
         safeArea = view.layoutMarginsGuide
-
-        self.title = selectedDetailUserName
-
 
         tableView.dataSource = self
         tableView.register(MemberDetailTableViewCell.self, forCellReuseIdentifier: "MemberDetailCell")
         setupView()
 
     }
-    
+
+    func getGithubData(){
+        GithubRequest.getGithubData { (result) in
+            let imageURL:URL=URL(string: result.avatarURL!)!
+            let data=NSData(contentsOf: imageURL)
+            DispatchQueue.main.async {
+                self.imageView.image=UIImage(data: data! as Data)
+                self.followersLabel.text = "\(String(describing: result.followers))"
+                self.followingLabel.text = "\(String(describing: result.following))"
+            }
+        }
+    }
+
+    func getGithubRepoData(){
+        GithubRequest.getGithubRepoData { (result) in
+            self.repos = result
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     func setupView() {
         view.addSubview(profileView)
@@ -107,29 +122,16 @@ class MemberDetailViewController: UIViewController {
         tableView.register(MemberDetailTableViewCell.self, forCellReuseIdentifier: "MemberDetailTableViewCell")
         tableView.rowHeight = 60
     }
+}
 
-        func getGithubRepoData() {
-            GithubRequest.shared.getGithubRepoData { (response) in
-                self.repos = response!
-            }
-        }
 
-    func getGithubData(){
-        GithubRequest.shared.getGithubData { (response) in
-            self.github = response
-            self.followersLabel.text = "\(response.followers)"
-            self.followingLabel.text = "\(response.following)"
-        }
-    }
-
-    }
 
 extension MemberDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Repositories"
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return repos.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -143,16 +145,16 @@ extension MemberDetailViewController: UITableViewDataSource {
 }
 
 /*
-if let imageURL = URL(string: actors[indexPath.row].image) {
-          DispatchQueue.global().async {
-              let data = try? Data(contentsOf: imageURL)
-              if let data = data {
-                  let image = UIImage(data: data)
-                  DispatchQueue.main.async {
-                      cell.imgView.image = image
-                  }
-              }
-          }
-      }
-*/
+ if let imageURL = URL(string: actors[indexPath.row].image) {
+ DispatchQueue.global().async {
+ let data = try? Data(contentsOf: imageURL)
+ if let data = data {
+ let image = UIImage(data: data)
+ DispatchQueue.main.async {
+ cell.imgView.image = image
+ }
+ }
+ }
+ }
+ */
 

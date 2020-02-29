@@ -28,6 +28,7 @@ class MembersViewController: UIViewController {
 
     var hipoMembers: Hipo? = nil
     var githubInfo = [Github]()
+    var repos = [Repo]()
     //    var repoElement:Repo? = nil
 
     var safeArea: UILayoutGuide!
@@ -38,6 +39,7 @@ class MembersViewController: UIViewController {
         view.backgroundColor = .white
         self.title = "Members"
 
+        getData()
         getNewMemberDataToMembersTableView()
         getJSONData()
 
@@ -60,12 +62,12 @@ class MembersViewController: UIViewController {
     //MARK: - Get Core Data
     @objc func getNewMemberDataToMembersTableView() {
 
-//        name.removeAll(keepingCapacity: false)
-//        location.removeAll(keepingCapacity: false)
-//        github.removeAll(keepingCapacity: false)
-//        position.removeAll(keepingCapacity: false)
-//        age.removeAll(keepingCapacity: false)
-//        yearsInHipo.removeAll(keepingCapacity: false)
+        name.removeAll(keepingCapacity: false)
+        location.removeAll(keepingCapacity: false)
+        github.removeAll(keepingCapacity: false)
+        position.removeAll(keepingCapacity: false)
+        age.removeAll(keepingCapacity: false)
+        yearsInHipo.removeAll(keepingCapacity: false)
 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -149,6 +151,15 @@ class MembersViewController: UIViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
 
+    func getData(){
+        GithubRequest.getGithubRepoData { (result) in
+            self.repos = result
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+
     //MARK: - Get JSONData
     func getJSONData() {
         do {
@@ -198,7 +209,7 @@ extension MembersViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
+       print(getData())
         let githubUsername = hipoMembers!.members[indexPath.row].github //github username
         let memberDetailController = MemberDetailViewController()
         self.navigationController?.pushViewController(memberDetailController, animated: true)
