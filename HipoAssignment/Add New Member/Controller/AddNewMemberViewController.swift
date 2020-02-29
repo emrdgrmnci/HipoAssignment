@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddNewMemberViewController: UIViewController {
+class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
 
     var nameArray = [String]()
     var positionArray = [String]()
@@ -35,12 +35,12 @@ class AddNewMemberViewController: UIViewController {
         return view
     }()
 
-    lazy var nameTextField = UITextField()
-    lazy var positionTextField = UITextField()
-    lazy var ageTextField = UITextField()
-    lazy var locationTextField = UITextField()
-    lazy var yearsInHipoTextField = UITextField()
-    lazy var githubTextField = UITextField()
+    lazy var nameTextField          =    UITextField()
+    lazy var positionTextField      = UITextField()
+    lazy var ageTextField           =     UITextField()
+    lazy var locationTextField      = UITextField()
+    lazy var yearsInHipoTextField   = UITextField()
+    lazy var githubTextField        =      UITextField()
 
     var safeArea: UILayoutGuide!
 
@@ -48,8 +48,22 @@ class AddNewMemberViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Add New Member"
 
-        setupView()
+        nameTextField.delegate = self
+        positionTextField.delegate = self
+        ageTextField.delegate = self
+        locationTextField.delegate = self
+        yearsInHipoTextField.delegate = self
+        githubTextField.delegate = self
 
+        //nameTextField
+        //positionTextField
+        ageTextField.keyboardType = .numberPad
+        //locationTextField
+        yearsInHipoTextField.keyboardType = .numberPad
+        //githubTextField
+
+
+        setupView()
         getUserDefaults()
 
         saveButton.addTarget(self, action:#selector(self.saveNewMemberButtonClicked), for: .touchUpInside)
@@ -59,6 +73,19 @@ class AddNewMemberViewController: UIViewController {
     @objc func saveNewMemberButtonClicked(_ sender: UIButton?) {
         print("Add New Member Save Button Clicked")
         saveLocalData()
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+      if textField == nameTextField || textField == positionTextField || textField == locationTextField {
+                  let allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                  let allowedCharacterSet = CharacterSet(charactersIn: allowedCharacters)
+                  let typedCharacterSet = CharacterSet(charactersIn: string)
+                  let alphabet = allowedCharacterSet.isSuperset(of: typedCharacterSet)
+                  return alphabet
+        } else {
+
+        return false
+      }
     }
 
     //MARK: - Setup View
