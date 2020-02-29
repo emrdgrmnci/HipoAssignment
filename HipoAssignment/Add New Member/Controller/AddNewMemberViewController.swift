@@ -42,59 +42,26 @@ class AddNewMemberViewController: UIViewController {
     lazy var yearsInHipoTextField = UITextField()
     lazy var githubTextField = UITextField()
 
-    /*
-     UILabel(frame: CGRect(x: 20, y: 80, width: 100, height: 20))
-     UILabel(frame: CGRect(x: 20, y: 180, width: 100, height: 20))
-     UILabel(frame: CGRect(x: 20, y: 280, width: 100, height: 20))
-     UILabel(frame: CGRect(x: 20, y: 380, width: 100, height: 20))
-     UILabel(frame: CGRect(x: 20, y: 480, width: 100, height: 20))
-     UILabel(frame: CGRect(x: 20, y: 580, width: 100, height: 20))
-     UITextField(frame: CGRect(x: 20, y: 100, width: 345, height: 50))
-     UITextField(frame: CGRect(x: 20, y: 200, width: 345, height: 50))
-     UITextField(frame: CGRect(x: 20, y: 300, width: 345, height: 50))
-     UITextField(frame: CGRect(x: 20, y: 400, width: 345, height: 50))
-     UITextField(frame: CGRect(x: 20, y: 500, width: 345, height: 50))
-     UITextField(frame: CGRect(x: 20, y: 600, width: 345, height: 50))
-     */
-
-
     var safeArea: UILayoutGuide!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Add New Member"
-        //        nameTextField.delegate = self
+
         setupView()
 
-//        if let name = UserDefaults.standard.value(forKey: "NameArray") as? [String] {
-//            nameArray = name
-//        }
-//        if let position = UserDefaults.standard.value(forKey: "PositionArray") as? [String] {
-//            nameArray = position
-//        }
-//        if let age = UserDefaults.standard.value(forKey: "AgeArray") as? [Int] {
-//            ageArray = age
-//        }
-//        if let location = UserDefaults.standard.value(forKey: "LocationArray") as? [String] {
-//            locationArray = location
-//        }
-//        if let years = UserDefaults.standard.value(forKey: "YearsArray") as? [Int] {
-//            yearsInHipoArray = years
-//        }
-//        if let github = UserDefaults.standard.value(forKey: "GithubArray") as? [String] {
-//            githubArray = github
-//        }
+        getUserDefaults()
 
         saveButton.addTarget(self, action:#selector(self.saveNewMemberButtonClicked), for: .touchUpInside)
     }
 
     //MARK: - Add New Member Button Click
-       @objc func saveNewMemberButtonClicked(_ sender: UIButton?) {
-           print("Add New Member Save Button Clicked")
+    @objc func saveNewMemberButtonClicked(_ sender: UIButton?) {
+        print("Add New Member Save Button Clicked")
+        saveLocalData()
+    }
 
-           saveLocalData()
-       }
-
+    //MARK: - Setup View
     func setupView() {
 
         view.addSubview(scrollView)
@@ -277,8 +244,46 @@ class AddNewMemberViewController: UIViewController {
         saveButton.layer.cornerRadius = 25
     }
 
+    //MARK: - Save User Defaults
+    func saveUserDefaults() {
+        let defaults = UserDefaults.standard
+        defaults.set(self.nameTextField.text, forKey: "nameTextField")
+        defaults.set(self.ageTextField.text, forKey: "ageTextField")
+        defaults.set(self.locationTextField.text, forKey: "locationTextField")
+        defaults.set(self.githubTextField.text, forKey: "githubTextField")
+        defaults.set(self.positionTextField.text, forKey: "positionTextField")
+        defaults.set(self.yearsInHipoTextField.text, forKey: "yearsInHipoTextField")
+    }
+
+    //MARK: - Get User Defaults
+    func getUserDefaults() {
+        let defaults = UserDefaults.standard
+        if let name = defaults.string(forKey: "nameTextField"){
+            nameTextField.text = name
+        }
+        if let age = defaults.string(forKey: "ageTextField"){
+            ageTextField.text = age
+        }
+        if let location = defaults.string(forKey: "locationTextField"){
+            locationTextField.text = location
+        }
+        if let github = defaults.string(forKey: "githubTextField"){
+            githubTextField.text = github
+        }
+        if let position = defaults.string(forKey: "positionTextField"){
+            positionTextField.text = position
+        }
+        if let years = defaults.string(forKey: "yearsInHipoTextField"){
+            yearsInHipoTextField.text = years
+        }
+    }
+
     //MARK: - Save localdata(CoreData)
     func saveLocalData() {
+        //UserDefaults
+        saveUserDefaults()
+
+        //CoreData
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         let saveNewMember = NSEntityDescription.insertNewObject(forEntityName: "HipoMember", into: context)
@@ -290,12 +295,12 @@ class AddNewMemberViewController: UIViewController {
         saveNewMember.setValue(Int(yearsInHipoTextField.text ?? "0"), forKey: "years_in_hipo")
         do {
             try context.save()
-//            self.showAlert(withTitle: "Saved", withMessage: "New member saved successfully!")
+            //            self.showAlert(withTitle: "Saved", withMessage: "New member saved successfully!")
             let alert = UIAlertController (title: "SAVED", message: "New member saved successfully!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ (alertOKAction) in
-                            self.dismiss(animated: false, completion: nil)
-                            self.navigationController!.popToRootViewController(animated: true)
-                        }))
+                self.dismiss(animated: false, completion: nil)
+                self.navigationController!.popToRootViewController(animated: true)
+            }))
             self.present(alert, animated: true, completion: nil)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newData"), object: nil)
 

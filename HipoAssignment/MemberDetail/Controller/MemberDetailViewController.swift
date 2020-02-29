@@ -58,10 +58,9 @@ class MemberDetailViewController: UIViewController {
 
     func getGithubData(){
         GithubRequest.getGithubData(userName: selectedDetailUserName) { (result) in
-            let imageURL:URL=URL(string: result.avatar_url!)!
-            let data=NSData(contentsOf: imageURL)
+           guard let avatarUrl = result.avatar_url, let url = URL(string: avatarUrl), let data = try? Data(contentsOf: url) else { return }
             DispatchQueue.main.async {
-                self.imageView.image=UIImage(data: data! as Data)
+                self.imageView.image=UIImage(data: data as Data)
                 self.followersLabel.text = "Followers \(result.followers ?? 0)"
                 self.followingLabel.text = "Following \(result.following ?? 0)"
             }
