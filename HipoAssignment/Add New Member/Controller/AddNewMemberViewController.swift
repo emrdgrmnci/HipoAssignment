@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddNewMemberViewController: UIViewController {
 
@@ -65,25 +66,34 @@ class AddNewMemberViewController: UIViewController {
         //        nameTextField.delegate = self
         setupView()
 
-        if let name = UserDefaults.standard.value(forKey: "NameArray") as? [String] {
-            nameArray = name
-        }
-        if let position = UserDefaults.standard.value(forKey: "PositionArray") as? [String] {
-            nameArray = position
-        }
-        if let age = UserDefaults.standard.value(forKey: "AgeArray") as? [Int] {
-            ageArray = age
-        }
-        if let location = UserDefaults.standard.value(forKey: "LocationArray") as? [String] {
-            locationArray = location
-        }
-        if let years = UserDefaults.standard.value(forKey: "YearsArray") as? [Int] {
-            yearsInHipoArray = years
-        }
-        if let github = UserDefaults.standard.value(forKey: "GithubArray") as? [String] {
-            githubArray = github
-        }
+//        if let name = UserDefaults.standard.value(forKey: "NameArray") as? [String] {
+//            nameArray = name
+//        }
+//        if let position = UserDefaults.standard.value(forKey: "PositionArray") as? [String] {
+//            nameArray = position
+//        }
+//        if let age = UserDefaults.standard.value(forKey: "AgeArray") as? [Int] {
+//            ageArray = age
+//        }
+//        if let location = UserDefaults.standard.value(forKey: "LocationArray") as? [String] {
+//            locationArray = location
+//        }
+//        if let years = UserDefaults.standard.value(forKey: "YearsArray") as? [Int] {
+//            yearsInHipoArray = years
+//        }
+//        if let github = UserDefaults.standard.value(forKey: "GithubArray") as? [String] {
+//            githubArray = github
+//        }
+
+        saveButton.addTarget(self, action:#selector(self.saveNewMemberButtonClicked), for: .touchUpInside)
     }
+
+    //MARK: - Add New Member Button Click
+       @objc func saveNewMemberButtonClicked(_ sender: UIButton?) {
+           print("Add New Member Save Button Clicked")
+
+           saveLocalData()
+       }
 
     func setupView() {
 
@@ -267,51 +277,33 @@ class AddNewMemberViewController: UIViewController {
         saveButton.layer.cornerRadius = 25
     }
 
-    //name: nameTextField.text!, age: ageTextField.text!, location: locationTextField.text!, github: githubTextField.text!, hipo: HipoClass(position: positionTextField.text!, yearsInHipo: yearsInHipoTextField.text!
-    func convertoJSON() {
-        let foo = Member(name: "Emre", age: 25, location: "Izmir", github: "emrdgrmnci", hipo: HipoClass(position: "iOS", yearsInHipo: 0))
+    //MARK: - Save localdata(CoreData)
+    func saveLocalData() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let saveNewMember = NSEntityDescription.insertNewObject(forEntityName: "HipoMember", into: context)
+        saveNewMember.setValue(nameLabel.text, forKey: "name")
+        saveNewMember.setValue(Int(ageLabel.text!), forKey: "age")
+        saveNewMember.setValue(locationLabel.text!, forKey: "location")
+        saveNewMember.setValue(githubLabel.text!, forKey: "github")
+        saveNewMember.setValue(positionLabel.text!, forKey: "position")
+        saveNewMember.setValue(Int(yearsInHipoLabel.text!), forKey: "years_in_hipo")
         do {
-            let data = try JSONSerialization.data(withJSONObject: foo, options: [])
-            if let dataString = String(data: data, encoding: .utf8) {
-                print(dataString)
-            }
+            try context.save()
+//            self.showAlert(withTitle: "Saved", withMessage: "New member saved successfully!")
+            let alert = UIAlertController (title: "SAVED", message: "New member saved successfully!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ (alertOKAction) in
+                            self.dismiss(animated: false, completion: nil)
+                            self.navigationController!.popToRootViewController(animated: true)
+                        }))
+            self.present(alert, animated: true, completion: nil)
+
+            print("Success!")
         } catch {
-            print(error)
+            self.showAlert(withTitle: "Error", withMessage: "New member does not saved successfully!")
+            print(error.localizedDescription)
         }
-        //        let foo = Member(name: "Emre", age: 25, location: "Izmir", github: "emrdgrmnci", hipo: HipoClass(position: "iOS", yearsInHipo: 0))
-        //        do {
-        //            let fileURL = try FileManager.default
-        //                .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        //                .appendingPathComponent("hipo.json")
-        //
-        //            try JSONEncoder().encode(foo)
-        //                .write(to: fileURL)
-        //        } catch {
-        //            print(error)
-        //        }
+
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newData"), object: nil)
     }
-
-    func writeToJSON() {
-        let foo = Member(name: "Emre", age: 25, location: "Izmir", github: "emrdgrmnci", hipo: HipoClass(position: "iOS", yearsInHipo: 0))
-        do {
-            let data = try JSONSerialization.data(withJSONObject: foo, options: [])
-            if let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                let fileUrl = documentDirectoryUrl.appendingPathComponent("hipo.json")
-                try data.write(to: fileUrl)
-            }
-        } catch {
-            print(error)
-        }
-    }
-
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-
 }

@@ -6,122 +6,94 @@
 //////  Copyright © 2020 Ali Emre Degirmenci. All rights reserved.
 //////
 ////
-//import Foundation
-////
-////enum GithubError: Error {
-////    case noDataAvailable
-////    case canNotProcessData
-////}
-////
-////class GithubRequest {
+import Foundation
+
+class GithubRequest{
+
+    let repos = [Repo]()
+
+    static let  shared = GithubRequest()
+
+    public func getGithubData(completion: @escaping (_ result: Github) -> Void) {
+        let userName = "emrdgrmnci"
+        let url = URL(string: "https://api.github.com/users/\(String(describing: userName))")
+            guard let downloadURL = url else { return }
+            URLSession.shared.dataTask(with: downloadURL) { data, urlResponse, error in
+                guard let data = data else {return}
+                do{
+                    guard let jsonString = String(data: data, encoding: .utf8) else {return}
+                    print(jsonString)
+                    let downloadedRepos = try JSONDecoder().decode(Github.self, from: data)
+                    completion(downloadedRepos)
+                }catch(let err) {
+                    print("something wrong after downloaded",err)
+                }
+            }.resume()
+        }
+
+
+        func getGithubRepoData(withCompletion completion: @escaping ([Repo]?) -> Void) {
+            let session = URLSession(configuration: .default, delegate: nil, delegateQueue: .main)
+            let userName = "emrdgrmnci"
+            let url = URL(string: "https://api.github.com/users/\(String(describing: userName))")!
+            let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+                guard let data = data else {
+                    completion(nil)
+                    return
+                }
+                let repo = try? JSONDecoder().decode([Repo].self, from: data)
+                completion(repo)
+            })
+            task.resume()
+        }
+
+}
+//class GithubRequest {
 //
-////    static let shared = GithubRequest(userName: "emrdgrmnci")
-////    let resourceGithubURL: URL
-////    let resourceRepoURL: URL
-//////
-////    init(userName: String) {
-////        let resourceGithubString = "https://api.github.com/users/\(userName)"
-////        guard let resourceGithubURL = URL(string: resourceGithubString) else {fatalError()}
-////        self.resourceGithubURL = resourceGithubURL
-////
-////        let resourceRepoString = "https://api.github.com/users/\(userName)/repos"
-////             guard let resourceRepoURL = URL(string: resourceGithubString) else {fatalError()}
-////             self.resourceRepoURL = resourceRepoURL
-////
-////        getGithubData()
-////        getGithubRepoData()
-////    }
+//    static let shared = GithubRequest(userName: "emrdgrmnci")
+//    let resourceGithubURL: URL
+//    let resourceRepoURL: URL
 //
-////func getGithubData() {
-//////    let jsonUrlString = "https://api.github.com/users/\(userName)"
-//////    guard let resourceURL = URL(string: jsonUrlString) else { fatalError()}
-////    URLSession.shared.dataTask(with: resourceGithubURL) { (data, response, err) in
-////
-////        guard let data = data else { return }
-////
-////        do {
-////             let githubInfoResponse = try JSONDecoder().decode(Github.self, from: data)
-////            let githubDetails = githubInfoResponse
-////            print("(GITHUB_____---->>>\(githubDetails)")
-////        }catch let jsonErr {
-////            print(jsonErr.localizedDescription)
-////        }
-////
-////    }.resume()
-////}
-////
-////func getGithubRepoData() {
-////
-//////    let jsonUrlString = "https://api.github.com/users/\(userName)/repos"
-//////    let url = URL(string: jsonUrlString)
-////
-////    URLSession.shared.dataTask(with: resourceRepoURL) { (data, response, err) in
-////
-////        guard let data = data else { return }
-////
-////        do {
-////            let repoElementResponse = try JSONDecoder().decode(RepoElement.self, from: data)
-////            let repoElementDetails = repoElementResponse
-////            print("(GITHUBREPO_____---->>>\(repoElementDetails)")
-////        }catch let jsonErr {
-////            print(jsonErr.localizedDescription)
-////        }
-////    }.resume()
-////}
-////}
+//    init(userName: String) {
+//        let resourceGithubString = "https://api.github.com/users/\(userName)"
+//        guard let resourceGithubURL = URL(string: resourceGithubString) else {fatalError()}
+//        self.resourceGithubURL = resourceGithubURL
 //
+//        let resourceRepoString = "https://api.github.com/users/\(userName)/repos"
+//             guard let resourceRepoURL = URL(string: resourceGithubString) else {fatalError()}
+//             self.resourceRepoURL = resourceRepoURL
 //
-// class GithubRequest {
+//        getGithubData()
+//        getGithubRepoData()
+//    }
 //
-//     var userName: String = "emrdgrmnci"
-//
-//     static let shared = GithubRequest()
-//
-//     public func getGithubData(completion: @escaping(Github) -> () ) {
-//         guard let url = URL(string: "https://api.github.com/users/\(userName)") else {return}
-//         let session = URLSession.shared
-//         session.dataTask(with: url) { (data, response, error) in
-//             guard error == nil else {
-//                 print("Error: \(error!)")
-//                 return
+//    func getGithubData(completion: @escaping (_ result: Github) -> Void) {
+//         guard let downloadURL = url else { return }
+//         URLSession.shared.dataTask(with: downloadURL) { data, urlResponse, error in
+//             guard let data = data else {return}
+//             do{
+//                 guard let jsonString = String(data: data, encoding: .utf8) else {return}
+//                 print(jsonString)
+//                 let downloadedRepos = try JSONDecoder().decode(Github.self, from: data)
+//                 completion(downloadedRepos)
+//             }catch(let err) {
+//                 print("something wrong after downloaded",err)
 //             }
-//             guard let data = data else {
-//                 print("No data!!!")
-//                 return
-//             }
-//             do {
-//                 let decoder = try JSONDecoder().decode(Github.self, from: data)
-//                 DispatchQueue.main.async {
-//                     completion(decoder)
-//                 }
-//             } catch {
-//                 print(error.localizedDescription)
-//             }
-//             }.resume()
+//         }.resume()
 //     }
 //
-//    public func getRepoData(completion: @escaping([Repo]) -> () ) {
-//            guard let url = URL(string: "https://api.github.com/users/\(userName)/repos") else {return}
-//            let session = URLSession.shared
-//            session.dataTask(with: url) { (data, response, error) in
-//                guard error == nil else {
-//                    print("Error: \(error!)")
-//                    return
-//                }
-//                guard let data = data else {
-//                    print("No data!!!")
-//                    return
-//                }
-//                do {
-//                    let decoder = try JSONDecoder().decode([Repo].self, from: data)
-//                    print("DECODER\(decoder)")
-//                    DispatchQueue.main.async {
-//                        completion(decoder)
-//                    }
-//                } catch {
-//                    print("REPO JSON PARSING ERROR \(error.localizedDescription)")
-//                }
-//                }.resume()
-//        }
-// }
-//
+//func getGithubRepoData(completion: @escaping (_ result: Repo) -> Void) {
+//        guard let downloadURL = url else { return }
+//        URLSession.shared.dataTask(with: downloadURL) { data, urlResponse, error in
+//            guard let data = data else {return}
+//            do{
+//                guard let jsonString = String(data: data, encoding: .utf8) else {return}
+//                print(jsonString)
+//                let downloadedRepos = try JSONDecoder().decode(Repo.self, from: data)
+//                completion(downloadedRepos)
+//            }catch(let err) {
+//                print("something wrong after downloaded",err)
+//            }
+//        }.resume()
+//    }
+//}

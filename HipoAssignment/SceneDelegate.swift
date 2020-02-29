@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let membersVC = MemberDetailViewController()
+        let membersVC = MembersViewController()
 //        let memberDetailVC = MemberDetailViewController()
         navigationController = UINavigationController(rootViewController: membersVC)
 //        navigationController!.viewControllers = [addNewMemberVC]

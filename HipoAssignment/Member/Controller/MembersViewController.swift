@@ -8,8 +8,18 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 class MembersViewController: UIViewController {
+
+    //CoreData Objects
+    var name = [String]()
+    var github = [String]()
+    var position = [String]()
+    var location = [String]()
+    var age = [Int]()
+    var yearsInHipo = [Int]()
+
     //UI Components
     var tableView = UITableView()
     @objc lazy var sortMembersButton = UIButton()
@@ -18,7 +28,7 @@ class MembersViewController: UIViewController {
 
     var hipoMembers: Hipo? = nil
     var githubInfo = [Github]()
-//    var repoElement:Repo? = nil
+    //    var repoElement:Repo? = nil
 
     var safeArea: UILayoutGuide!
 
@@ -28,6 +38,7 @@ class MembersViewController: UIViewController {
         view.backgroundColor = .white
         self.title = "Members"
 
+        getNewMemberDataToMembersTableView()
         getJSONData()
 
         safeArea = view.layoutMarginsGuide
@@ -40,6 +51,64 @@ class MembersViewController: UIViewController {
         sortMembersButton.addTarget(self, action:#selector(self.sortMembersButtonClicked), for: .touchUpInside)
 
         setupView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+          NotificationCenter.default.addObserver(self, selector: #selector(getNewMemberDataToMembersTableView), name: NSNotification.Name(rawValue: "newData"), object: nil)
+    }
+
+    //MARK: - Get Core Data
+    @objc func getNewMemberDataToMembersTableView() {
+
+//        name.removeAll(keepingCapacity: false)
+//        location.removeAll(keepingCapacity: false)
+//        github.removeAll(keepingCapacity: false)
+//        position.removeAll(keepingCapacity: false)
+//        age.removeAll(keepingCapacity: false)
+//        yearsInHipo.removeAll(keepingCapacity: false)
+
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "HipoMember")
+        fetchRequest.returnsObjectsAsFaults = false
+
+        do {
+            let results = try context.fetch(fetchRequest)
+            if results.count > 0 {
+                for result in results as! [NSManagedObject] {
+
+                    if let name = result.value(forKey: "name") as? String {
+                        self.name.append(name)
+                    }
+
+                    if let age = result.value(forKey: "age") as? Int {
+                        self.age.append(age)
+                    }
+
+                    if let location = result.value(forKey: "location") as? String {
+                        self.location.append(location)
+                    }
+
+
+                    if let github = result.value(forKey: "github") as? String {
+                        self.github.append(github)
+                    }
+
+                    if let position = result.value(forKey: "position") as? String {
+                        self.position.append(position)
+                    }
+
+                    if let yearsInHipo = result.value(forKey: "years_in_hipo") as? Int {
+                        self.yearsInHipo.append(yearsInHipo)
+                    }
+
+                    self.tableView.reloadData()
+                }
+            }
+        } catch {
+            print("error")
+        }
     }
 
     //MARK: - Setup View
@@ -96,7 +165,7 @@ class MembersViewController: UIViewController {
             sortingMembers(with: [$0.name], char: "a")
             print("\($0.name.countInstances(of: "a"))")
             print("\($0.name)")
-    }
+        }
     }
 
     //MARK: - Add New Member Button Click
@@ -115,13 +184,14 @@ class MembersViewController: UIViewController {
 
 extension MembersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (hipoMembers?.members.count)!
+        return name.count
+        //        return (hipoMembers?.members.count)!
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MembersCell", for: indexPath)
-        cell.textLabel?.text = hipoMembers?.members[indexPath.row].name
-        cell.detailTextLabel?.text = hipoMembers?.members[indexPath.row].github
+        cell.textLabel?.text = location[indexPath.row]
+        //        cell.textLabel?.text = hipoMembers?.members[indexPath.row].name
         cell.accessoryType = .disclosureIndicator
         return cell
     }
@@ -137,4 +207,17 @@ extension MembersViewController: UITableViewDataSource, UITableViewDelegate {
         memberDetailController.selectedDetailUserName = hipoMembers!.members[indexPath.row].github
     }
 }
+
+/*
+ selectedWeather = cities[indexPath.row]
+ selectedWeatherId = idArray[indexPath.row]
+
+ let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+ let detailHistoryVC = storyBoard.instantiateViewController(withIdentifier: "DetailWeatherHistoryViewController") as! DetailWeatherHistoryViewController
+ detailHistoryVC.chosenWeather = selectedWeather
+ detailHistoryVC.chosenWeatherId = selectedWeatherId
+ tableView.deselectRow(at: indexPath, animated: true)
+
+ self.navigationController?.pushViewController(detailHistoryVC, animated: true)
+ */
 

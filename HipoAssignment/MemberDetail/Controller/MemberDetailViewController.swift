@@ -9,29 +9,12 @@
 import UIKit
 import Foundation
 
-//   let repo = try? newJSONDecoder().decode(Repo.self, from: jsonData)
-
-// MARK: - RepoElement
-struct RepoElement: Codable {
-    let name: String?
-    let updatedAt: Date?
-    let stargazersCount: Int?
-    let language: String?
-
-    enum CodingKeys: String, CodingKey {
-        case name
-        case updatedAt = "updated_at"
-        case stargazersCount = "stargazers_count"
-        case language
-    }
-}
-
-typealias Repo = [RepoElement]
-
 class MemberDetailViewController: UIViewController {
-final let url = URL(string: "https://api.github.com/users/emrdgrmnci/repos")
+//final let url = URL(string: "https://api.github.com/users/emrdgrmnci/repos")
 
-    private var repos: Repo?
+    var repos = [Repo]()
+    var github: Github?
+
 
     var selectedUserData: String = ""
     var selectedDetailUserName: String = ""
@@ -56,14 +39,14 @@ final let url = URL(string: "https://api.github.com/users/emrdgrmnci/repos")
         return view
     }()
 
-    var github = [Github]()
-//    var githubRepo: Repo?
-
     var safeArea: UILayoutGuide!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        getGithubRepoData()
         getGithubData()
+
         print(selectedUserData)
         safeArea = view.layoutMarginsGuide
 
@@ -71,9 +54,11 @@ final let url = URL(string: "https://api.github.com/users/emrdgrmnci/repos")
 
 
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MemberDetailCell")
+        tableView.register(MemberDetailTableViewCell.self, forCellReuseIdentifier: "MemberDetailCell")
         setupView()
+
     }
+    
 
     func setupView() {
         view.addSubview(profileView)
@@ -122,48 +107,37 @@ final let url = URL(string: "https://api.github.com/users/emrdgrmnci/repos")
         tableView.register(MemberDetailTableViewCell.self, forCellReuseIdentifier: "MemberDetailTableViewCell")
         tableView.rowHeight = 60
     }
-    //MARK: - Get apiData
-    func getGithubData() {
-        guard let downloadURL = url else { return }
-        URLSession.shared.dataTask(with: downloadURL) { data, urlResponse, error in
-            guard let data = data, error == nil, urlResponse != nil else {
-                print("something is wrong")
-                return
+
+        func getGithubRepoData() {
+            GithubRequest.shared.getGithubRepoData { (response) in
+                self.repos = response!
             }
-            print("downloaded")
-            do
-            {
-                let decoder = JSONDecoder()
-                let downloadedRepos = try decoder.decode(Repo.self, from: data)
-                self.repos = downloadedRepos
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } catch {
-                print("something wrong after downloaded")
-            }
-        }.resume()
+        }
+
+    func getGithubData(){
+        GithubRequest.shared.getGithubData { (response) in
+            self.github = response
+            self.followersLabel.text = "\(response.followers)"
+            self.followingLabel.text = "\(response.following)"
         }
     }
 
-//    func getRepoData() {
-//        GithubRequest.shared.getRepoData { (response) in
-////            self.githubRepo = response
-//        }
-//    }
-
+    }
 
 extension MemberDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Repositories"
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repos!.count
+        return 5
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemberDetailCell", for: indexPath) as! MemberDetailTableViewCell
-        cell.languageLabel.text = repos![indexPath.row].language
+        cell.languageLabel.text = repos[indexPath.row].language
+        cell.repoNameLabel.text = repos[indexPath.row].name
+        cell.dateLabel.text = repos[indexPath.row].updated_at
+        cell.starLabel.text = "\(repos[indexPath.row].stargazers_count)"
         return cell
     }
 }
