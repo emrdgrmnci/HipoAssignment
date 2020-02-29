@@ -27,7 +27,7 @@ extension String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = format
     guard let date = dateFormatter.date(from: self) else {
-      preconditionFailure("Take a look to your format")
+      preconditionFailure("Look at your format")
     }
     return date
   }

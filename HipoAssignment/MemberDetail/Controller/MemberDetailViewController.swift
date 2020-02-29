@@ -14,14 +14,14 @@ class MemberDetailViewController: UIViewController {
     var repos = [Repo]()
     var github: Github?
 
-//    var selectedUserData: String = ""
+    //    var selectedUserData: String = ""
     var selectedDetailUserName: String = ""
-//    var selectedDetailFollowerCount: Int?
-//    var selectedDetailFollowingCount: Int?
-//    var selectedDetailRepoName: String = ""
-//    var selectedDetailRepoDate: String = ""
-//    var selectedDetailLanguage: String = ""
-//    var selectedDetailRepoStar: String = ""
+    //    var selectedDetailFollowerCount: Int?
+    //    var selectedDetailFollowingCount: Int?
+    //    var selectedDetailRepoName: String = ""
+    //    var selectedDetailRepoDate: String = ""
+    //    var selectedDetailLanguage: String = ""
+    //    var selectedDetailRepoStar: String = ""
 
     weak var delegate: MembersViewController!
 
@@ -41,6 +41,7 @@ class MemberDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         safeArea = view.layoutMarginsGuide
 
@@ -67,7 +68,6 @@ class MemberDetailViewController: UIViewController {
     }
 
     func getGithubRepoData(){
-
         GithubRequest.getGithubRepoData(userName: selectedDetailUserName) { (result) in
             self.repos = result
             DispatchQueue.main.async {
@@ -120,7 +120,7 @@ class MemberDetailViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.register(MemberDetailTableViewCell.self, forCellReuseIdentifier: "MemberDetailTableViewCell")
-        tableView.rowHeight = 60
+        tableView.rowHeight = 51
     }
 }
 
@@ -134,6 +134,7 @@ extension MemberDetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemberDetailCell", for: indexPath) as! MemberDetailTableViewCell
+
         cell.languageLabel.text = repos[indexPath.row].language
         cell.repoNameLabel.text = repos[indexPath.row].name
         cell.dateLabel.text = repos[indexPath.row].updated_at

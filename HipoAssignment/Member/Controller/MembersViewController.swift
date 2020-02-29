@@ -148,7 +148,7 @@ class MembersViewController: UIViewController {
        @objc func sortMembersButtonClicked(_ sender: UIButton?) {
            print("Sort Button Clicked")
            hipoMembers.forEach {
-               sortingMembers(with: [$0.name], char: "a")
+            sortingMembers(with: [$0.name.lowercased()], char: "a")
                print("\($0.name.countInstances(of: "a"))")
                print("\($0.name)")
            }
