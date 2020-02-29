@@ -43,9 +43,6 @@ class MemberDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getGithubData()
-        getGithubRepoData()
-
         safeArea = view.layoutMarginsGuide
 
         tableView.dataSource = self
@@ -54,20 +51,26 @@ class MemberDetailViewController: UIViewController {
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        getGithubData()
+        getGithubRepoData()
+    }
+
     func getGithubData(){
-        GithubRequest.getGithubData { (result) in
-            let imageURL:URL=URL(string: result.avatarURL!)!
+        GithubRequest.getGithubData(userName: selectedDetailUserName) { (result) in
+            let imageURL:URL=URL(string: result.avatar_url!)!
             let data=NSData(contentsOf: imageURL)
             DispatchQueue.main.async {
                 self.imageView.image=UIImage(data: data! as Data)
-                self.followersLabel.text = "\(String(describing: result.followers))"
-                self.followingLabel.text = "\(String(describing: result.following))"
+                self.followersLabel.text = "Followers \(result.followers ?? 0)"
+                self.followingLabel.text = "Following \(result.following ?? 0)"
             }
         }
     }
 
     func getGithubRepoData(){
-        GithubRequest.getGithubRepoData { (result) in
+
+        GithubRequest.getGithubRepoData(userName: selectedDetailUserName) { (result) in
             self.repos = result
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -124,8 +127,6 @@ class MemberDetailViewController: UIViewController {
     }
 }
 
-
-
 extension MemberDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Repositories"
@@ -139,22 +140,8 @@ extension MemberDetailViewController: UITableViewDataSource {
         cell.languageLabel.text = repos[indexPath.row].language
         cell.repoNameLabel.text = repos[indexPath.row].name
         cell.dateLabel.text = repos[indexPath.row].updated_at
-        cell.starLabel.text = "\(repos[indexPath.row].stargazers_count)"
+        cell.starLabel.text = "⭐️\(repos[indexPath.row].stargazers_count ?? 0)"
         return cell
     }
 }
-
-/*
- if let imageURL = URL(string: actors[indexPath.row].image) {
- DispatchQueue.global().async {
- let data = try? Data(contentsOf: imageURL)
- if let data = data {
- let image = UIImage(data: data)
- DispatchQueue.main.async {
- cell.imgView.image = image
- }
- }
- }
- }
- */
 

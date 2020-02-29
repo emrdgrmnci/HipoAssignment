@@ -9,16 +9,78 @@
 import Foundation
 
 struct Github: Codable {
-    let avatarURL: String?
+    let login: String?
+    let id: Int?
+    let nodeId: String?
+    let avatar_url: String?
+    let gravatarId: String?
+    let url: String?
+    let htmlUrl: String?
+    let followersUrl: String?
+    let followingUrl: String?
+    let gistsUrl: String?
+    let starredUrl: String?
+    let subscriptionsUrl: String?
+    let organizationsUrl: String?
+    let reposUrl: String?
+    let eventsUrl: String?
+    let receivedEventsUrl: String?
+    let type: String?
+    let siteAdmin: Bool?
     let name: String?
-    let followers, following: Int?
+    let blog: String?
+    let location: String?
+    let bio: String?
+    let publicRepos: Int?
+    let publicGists: Int?
+    let followers: Int?
+    let following: Int?
+    let createdAt: Date?
+    let updatedAt: Date?
 
     enum CodingKeys: String, CodingKey {
-        case avatarURL = "avatar_url"
-        case name, followers, following
-
+        case login
+        case id
+        case nodeId
+        case avatar_url
+        case gravatarId
+        case url
+        case htmlUrl
+        case followersUrl
+        case followingUrl
+        case gistsUrl
+        case starredUrl
+        case subscriptionsUrl
+        case organizationsUrl
+        case reposUrl
+        case eventsUrl
+        case receivedEventsUrl
+        case type
+        case siteAdmin
+        case name
+        case blog
+        case location
+        case bio
+        case publicRepos
+        case publicGists
+        case followers
+        case following
+        case createdAt
+        case updatedAt
     }
 }
+
+//struct Github: Codable {
+//    let avatarURL: String?
+//    let name: String?
+//    let followers, following: Int?
+//
+//    enum CodingKeys: String, CodingKey {
+//        case avatarURL = "avatar_url"
+//        case name, followers, following
+//
+//    }
+//}
 
 // MARK: - Repo
 struct Repo : Codable {

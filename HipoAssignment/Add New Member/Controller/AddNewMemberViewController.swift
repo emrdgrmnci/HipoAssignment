@@ -282,12 +282,12 @@ class AddNewMemberViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         let saveNewMember = NSEntityDescription.insertNewObject(forEntityName: "HipoMember", into: context)
-        saveNewMember.setValue(nameLabel.text, forKey: "name")
-        saveNewMember.setValue(Int(ageLabel.text!), forKey: "age")
-        saveNewMember.setValue(locationLabel.text!, forKey: "location")
-        saveNewMember.setValue(githubLabel.text!, forKey: "github")
-        saveNewMember.setValue(positionLabel.text!, forKey: "position")
-        saveNewMember.setValue(Int(yearsInHipoLabel.text!), forKey: "years_in_hipo")
+        saveNewMember.setValue(nameTextField.text, forKey: "name")
+        saveNewMember.setValue(Int(ageTextField.text ?? "0"), forKey: "age")
+        saveNewMember.setValue(locationTextField.text!, forKey: "location")
+        saveNewMember.setValue(githubTextField.text!, forKey: "github")
+        saveNewMember.setValue(positionTextField.text!, forKey: "position")
+        saveNewMember.setValue(Int(yearsInHipoTextField.text ?? "0"), forKey: "years_in_hipo")
         do {
             try context.save()
 //            self.showAlert(withTitle: "Saved", withMessage: "New member saved successfully!")
@@ -297,6 +297,7 @@ class AddNewMemberViewController: UIViewController {
                             self.navigationController!.popToRootViewController(animated: true)
                         }))
             self.present(alert, animated: true, completion: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newData"), object: nil)
 
             print("Success!")
         } catch {
@@ -304,6 +305,5 @@ class AddNewMemberViewController: UIViewController {
             print(error.localizedDescription)
         }
 
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newData"), object: nil)
     }
 }
