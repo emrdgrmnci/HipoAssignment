@@ -1,5 +1,4 @@
-<img src="/ScreenImages/locallyLogo.png" width="220" style="max-width:100%;" align= "left"/><br><br> 
-# RESTAURANT VIEWING APP [![Swift](https://img.shields.io/badge/Swift-4.0+-orange.svg)]() [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)]()
+# Hipo Assignment [![Swift](https://img.shields.io/badge/Swift-5.1+-orange.svg)]() [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)]()
 
 If you want to see the full screen flow in video, you can check this link: 
 https://youtu.be/RNBttqX04K4
