@@ -11,6 +11,7 @@ Are you Hipo? <b>Hipo Assignment</b> is a sorting, listing and showing hipo memb
 
 ### What I did?
 <ul>
+<li>I coded UI elements programmatically.</li>
 <li>I followed UI design theme as possible as I can.</li> 
 <li>I did not use any 3rd party library.</li> 
 
@@ -23,10 +24,10 @@ Are you Hipo? <b>Hipo Assignment</b> is a sorting, listing and showing hipo memb
 ### FEATURES
 <ul>
 <li>Add New Member</li>
-<li>Count table view elements characters with sOrt Button</li>
-<li>Used Core Data</a> for save local data.
-<li>Used URLSession</a> for network call.
-<li>Used UserDefaults</a> for add new member text fields .
+<li>Count table view elements characters with Sort Button</li>
+<li>Used <a href = "https://developer.apple.com/documentation/coredata">Core Data</a> for local data saving.
+<li>Used <a href = "https://developer.apple.com/documentation/foundation/urlsession">URLSession</a> for network call.
+<li>Used <a href = "https://developer.apple.com/documentation/foundation/userdefaults">UserDefaults</a> in add new member text fields .
 <li>Deployment target: iOS 13.0+</li>
 <li>Supported devices: iPhone 5s, SE, 6, 6 Plus, 6s, 6s Plus, 7, 7 Plus, 8, 8 Plus, iPhone X, iPhone XR, iPhone Xs, iPhone Xs Max, iPhone 11, iPhone 11 Pro, iPhone 11 Pro Max </li>
 </ul>
