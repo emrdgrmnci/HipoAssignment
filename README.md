@@ -1,9 +1,6 @@
 # Hipo Assignment [![Swift](https://img.shields.io/badge/Swift-5.1+-orange.svg)]() [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)]()
 
-If you want to see the full screen flow in video, you can check this link: 
-https://youtu.be/RNBttqX04K4
-
-<img src="LocallyScreens.png" width="650" height= "1100" align= "left"/>&nbsp;
+<img src="Screen Shot 2020-03-01 at 12.32.30.png" width="650" height= "1100" align= "left"/>&nbsp;
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   
 ### ABOUT
