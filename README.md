@@ -8,8 +8,8 @@ Are you Hipo? <b>Hipo Assignment</b> is a sorting, listing and showing hipo memb
 <ul>
 
 - First of all, this project has 1 local json file and 2 github apis which is one for github user infos and the other one is for github reops. I used listing hipo.json datas in table view of **MembersViewController**. I added new members from **AddNewMemberViewController** to **MembersViewController**. When I was adding new members to **MembersViewController** I used **CoreData** in **AddNewMemberViewController** and I did not merge **CoreData** and **hipo.json** datas. So, I saved **hipo.json** datas to **CoreData** manually in **AddNewMemberViewController** textfields. 
-
-**Therefore, MembersViewController screen has no data at the first launch of app!!! 
+</br>
+**Therefore, MembersViewController screen has no data at the first launch of app!!!** 
 
 - Secondly, with **Sort Members** button I did not sort members with assignment requirements and I did not change UI with sorted objects. I just counted characters of table view cell data with **a** character and printed in console.
 
