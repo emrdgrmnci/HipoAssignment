@@ -8,10 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		471ADCE32407E716004E9033 /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471ADCE22407E716004E9033 /* Github.swift */; };
-		471ADCE52407EBA3004E9033 /* GithubRepoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471ADCE42407EBA3004E9033 /* GithubRepoRequest.swift */; };
 		471ADCE72407F2EE004E9033 /* GithubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471ADCE62407F2EE004E9033 /* GithubRequest.swift */; };
 		478F2928240A4D0400823C0E /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478F2927240A4D0400823C0E /* UIViewController+Alert.swift */; };
-		47D2AEE72407A1CA0074F54C /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEE62407A1CA0074F54C /* PersistenceService.swift */; };
+		47B97437240BA57500D04730 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B97436240BA57500D04730 /* Utility.swift */; };
 		47D2AEEA2407A4300074F54C /* HipoMember+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEE82407A4300074F54C /* HipoMember+CoreDataClass.swift */; };
 		47D2AEEB2407A4300074F54C /* HipoMember+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEE92407A4300074F54C /* HipoMember+CoreDataProperties.swift */; };
 		47D2AEED2407BC4A0074F54C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEEC2407BC4A0074F54C /* StringExtension.swift */; };
@@ -31,10 +30,9 @@
 
 /* Begin PBXFileReference section */
 		471ADCE22407E716004E9033 /* Github.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Github.swift; sourceTree = "<group>"; };
-		471ADCE42407EBA3004E9033 /* GithubRepoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepoRequest.swift; sourceTree = "<group>"; };
 		471ADCE62407F2EE004E9033 /* GithubRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRequest.swift; sourceTree = "<group>"; };
 		478F2927240A4D0400823C0E /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
-		47D2AEE62407A1CA0074F54C /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		47B97436240BA57500D04730 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		47D2AEE82407A4300074F54C /* HipoMember+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HipoMember+CoreDataClass.swift"; sourceTree = "<group>"; };
 		47D2AEE92407A4300074F54C /* HipoMember+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HipoMember+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		47D2AEEC2407BC4A0074F54C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -65,6 +63,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47B97435240BA55100D04730 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				47B97436240BA57500D04730 /* Utility.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		47B97439240BA83500D04730 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				47D3859A2406C147007BA0BA /* hipo.json */,
+				47D3858A2406B45F007BA0BA /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		47B9743A240BA87700D04730 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				47D385802406B45C007BA0BA /* SceneDelegate.swift */,
+				47D3858C2406B45F007BA0BA /* LaunchScreen.storyboard */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		47B9743B240BA93200D04730 /* Network Request */ = {
+			isa = PBXGroup;
+			children = (
+				471ADCE62407F2EE004E9033 /* GithubRequest.swift */,
+			);
+			path = "Network Request";
+			sourceTree = "<group>";
+		};
 		47D2AEEE2407CB520074F54C /* MemberDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +157,7 @@
 		47D2AEF72407CC4A0074F54C /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				47D385872406B45C007BA0BA /* HipoAssignment.xcdatamodeld */,
 				47D2AEE82407A4300074F54C /* HipoMember+CoreDataClass.swift */,
 				47D2AEE92407A4300074F54C /* HipoMember+CoreDataProperties.swift */,
 			);
@@ -136,6 +169,7 @@
 			children = (
 				47D3857D2406B45C007BA0BA /* HipoAssignment */,
 				47D3857C2406B45C007BA0BA /* Products */,
+				47B97439240BA83500D04730 /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,32 +184,19 @@
 		47D3857D2406B45C007BA0BA /* HipoAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				47B9743B240BA93200D04730 /* Network Request */,
+				47D3858F2406B45F007BA0BA /* Info.plist */,
+				47D3857E2406B45C007BA0BA /* AppDelegate.swift */,
+				47B9743A240BA87700D04730 /* Application */,
+				47B97435240BA55100D04730 /* Utility */,
 				47D2AEF72407CC4A0074F54C /* Core Data */,
 				47D2AEF52407CC2C0074F54C /* Add New Member */,
 				47D2AEF32407CBFB0074F54C /* Member */,
 				47D2AEEE2407CB520074F54C /* MemberDetail */,
 				47D3859F24071215007BA0BA /* Extensions */,
 				47D3859C2406C180007BA0BA /* Model */,
-				47D385992406C124007BA0BA /* Resources */,
-				47D3857E2406B45C007BA0BA /* AppDelegate.swift */,
-				47D385802406B45C007BA0BA /* SceneDelegate.swift */,
-				47D3858A2406B45F007BA0BA /* Assets.xcassets */,
-				47D3858C2406B45F007BA0BA /* LaunchScreen.storyboard */,
-				47D3858F2406B45F007BA0BA /* Info.plist */,
-				47D385872406B45C007BA0BA /* HipoAssignment.xcdatamodeld */,
-				47D2AEE62407A1CA0074F54C /* PersistenceService.swift */,
-				471ADCE42407EBA3004E9033 /* GithubRepoRequest.swift */,
-				471ADCE62407F2EE004E9033 /* GithubRequest.swift */,
 			);
 			path = HipoAssignment;
-			sourceTree = "<group>";
-		};
-		47D385992406C124007BA0BA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				47D3859A2406C147007BA0BA /* hipo.json */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		47D3859C2406C180007BA0BA /* Model */ = {
@@ -270,6 +291,7 @@
 			files = (
 				47D385892406B45C007BA0BA /* HipoAssignment.xcdatamodeld in Sources */,
 				47D385A12407122E007BA0BA /* UIImage.swift in Sources */,
+				47B97437240BA57500D04730 /* Utility.swift in Sources */,
 				47D385832406B45C007BA0BA /* MembersViewController.swift in Sources */,
 				478F2928240A4D0400823C0E /* UIViewController+Alert.swift in Sources */,
 				47D2AEEA2407A4300074F54C /* HipoMember+CoreDataClass.swift in Sources */,
@@ -278,11 +300,9 @@
 				47D3859E2406C18D007BA0BA /* Hipo.swift in Sources */,
 				47D2AEF22407CBA80074F54C /* MemberDetailTableViewCell.swift in Sources */,
 				47D3857F2406B45C007BA0BA /* AppDelegate.swift in Sources */,
-				471ADCE52407EBA3004E9033 /* GithubRepoRequest.swift in Sources */,
 				471ADCE72407F2EE004E9033 /* GithubRequest.swift in Sources */,
 				47D385962406BC71007BA0BA /* MemberDetailViewController.swift in Sources */,
 				47D2AEED2407BC4A0074F54C /* StringExtension.swift in Sources */,
-				47D2AEE72407A1CA0074F54C /* PersistenceService.swift in Sources */,
 				47D2AEEB2407A4300074F54C /* HipoMember+CoreDataProperties.swift in Sources */,
 				47D385812406B45C007BA0BA /* SceneDelegate.swift in Sources */,
 			);

@@ -29,6 +29,10 @@ class MemberDetailTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func configureCell(dateTxt:String){
+        dateLabel.text =  Utility.convertFormat(dateTxt)
+    }
+
     func setupView() {
         repoNameLabel.translatesAutoresizingMaskIntoConstraints = false
         repoNameLabel.font = repoNameLabel.font.withSize(14)

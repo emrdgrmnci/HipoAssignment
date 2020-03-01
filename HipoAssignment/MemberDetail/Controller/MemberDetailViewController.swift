@@ -14,14 +14,7 @@ class MemberDetailViewController: UIViewController {
     var repos = [Repo]()
     var github: Github?
 
-    //    var selectedUserData: String = ""
     var selectedDetailUserName: String = ""
-    //    var selectedDetailFollowerCount: Int?
-    //    var selectedDetailFollowingCount: Int?
-    //    var selectedDetailRepoName: String = ""
-    //    var selectedDetailRepoDate: String = ""
-    //    var selectedDetailLanguage: String = ""
-    //    var selectedDetailRepoStar: String = ""
 
     weak var delegate: MembersViewController!
 
