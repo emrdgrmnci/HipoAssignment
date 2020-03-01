@@ -1,4 +1,4 @@
-<img src="/ScreenImages/hipologo.png" width="220" style="max-width:100%;" align= "left"/><br><br>
+<img src="/ScreenImages/hipologo.png" width="220" style="max-width:100%;" align= "left"/><br><br><br><br><br><br>
 # Hipo Assignment [![Swift](https://img.shields.io/badge/Swift-5.1+-orange.svg)]() [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)]()
   
 ### ABOUT
