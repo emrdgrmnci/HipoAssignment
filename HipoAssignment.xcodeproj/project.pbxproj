@@ -26,7 +26,18 @@
 		47D3859B2406C147007BA0BA /* hipo.json in Resources */ = {isa = PBXBuildFile; fileRef = 47D3859A2406C147007BA0BA /* hipo.json */; };
 		47D3859E2406C18D007BA0BA /* Hipo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D3859D2406C18D007BA0BA /* Hipo.swift */; };
 		47D385A12407122E007BA0BA /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D385A02407122E007BA0BA /* UIImage.swift */; };
+		47DCF0AD240BCE0300C93963 /* HipoAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DCF0AC240BCE0300C93963 /* HipoAssignmentTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		47DCF0AF240BCE0300C93963 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 47D385732406B45C007BA0BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47D3857A2406B45C007BA0BA;
+			remoteInfo = HipoAssignment;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		471ADCE22407E716004E9033 /* Github.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Github.swift; sourceTree = "<group>"; };
@@ -50,10 +61,22 @@
 		47D3859A2406C147007BA0BA /* hipo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hipo.json; sourceTree = "<group>"; };
 		47D3859D2406C18D007BA0BA /* Hipo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hipo.swift; sourceTree = "<group>"; };
 		47D385A02407122E007BA0BA /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		47DCF09E240BCDE900C93963 /* HipoAssignmentTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HipoAssignmentTestCase.swift; sourceTree = "<group>"; };
+		47DCF0A0240BCDE900C93963 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47DCF0AA240BCE0300C93963 /* HipoAssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HipoAssignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		47DCF0AC240BCE0300C93963 /* HipoAssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HipoAssignmentTests.swift; sourceTree = "<group>"; };
+		47DCF0AE240BCE0300C93963 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		47D385782406B45C007BA0BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47DCF0A7240BCE0300C93963 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -168,6 +191,8 @@
 			isa = PBXGroup;
 			children = (
 				47D3857D2406B45C007BA0BA /* HipoAssignment */,
+				47DCF09D240BCDE900C93963 /* HipoAssignmentTestCase */,
+				47DCF0AB240BCE0300C93963 /* HipoAssignmentTests */,
 				47D3857C2406B45C007BA0BA /* Products */,
 				47B97439240BA83500D04730 /* Resources */,
 			);
@@ -177,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				47D3857B2406B45C007BA0BA /* HipoAssignment.app */,
+				47DCF0AA240BCE0300C93963 /* HipoAssignmentTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,6 +244,24 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		47DCF09D240BCDE900C93963 /* HipoAssignmentTestCase */ = {
+			isa = PBXGroup;
+			children = (
+				47DCF09E240BCDE900C93963 /* HipoAssignmentTestCase.swift */,
+				47DCF0A0240BCDE900C93963 /* Info.plist */,
+			);
+			path = HipoAssignmentTestCase;
+			sourceTree = "<group>";
+		};
+		47DCF0AB240BCE0300C93963 /* HipoAssignmentTests */ = {
+			isa = PBXGroup;
+			children = (
+				47DCF0AC240BCE0300C93963 /* HipoAssignmentTests.swift */,
+				47DCF0AE240BCE0300C93963 /* Info.plist */,
+			);
+			path = HipoAssignmentTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -238,6 +282,24 @@
 			productReference = 47D3857B2406B45C007BA0BA /* HipoAssignment.app */;
 			productType = "com.apple.product-type.application";
 		};
+		47DCF0A9240BCE0300C93963 /* HipoAssignmentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47DCF0B1240BCE0300C93963 /* Build configuration list for PBXNativeTarget "HipoAssignmentTests" */;
+			buildPhases = (
+				47DCF0A6240BCE0300C93963 /* Sources */,
+				47DCF0A7240BCE0300C93963 /* Frameworks */,
+				47DCF0A8240BCE0300C93963 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				47DCF0B0240BCE0300C93963 /* PBXTargetDependency */,
+			);
+			name = HipoAssignmentTests;
+			productName = HipoAssignmentTests;
+			productReference = 47DCF0AA240BCE0300C93963 /* HipoAssignmentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -250,6 +312,10 @@
 				TargetAttributes = {
 					47D3857A2406B45C007BA0BA = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					47DCF0A9240BCE0300C93963 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 47D3857A2406B45C007BA0BA;
 					};
 				};
 			};
@@ -267,6 +333,7 @@
 			projectRoot = "";
 			targets = (
 				47D3857A2406B45C007BA0BA /* HipoAssignment */,
+				47DCF0A9240BCE0300C93963 /* HipoAssignmentTests */,
 			);
 		};
 /* End PBXProject section */
@@ -279,6 +346,13 @@
 				47D3858E2406B45F007BA0BA /* LaunchScreen.storyboard in Resources */,
 				47D3859B2406C147007BA0BA /* hipo.json in Resources */,
 				47D3858B2406B45F007BA0BA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47DCF0A8240BCE0300C93963 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +382,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		47DCF0A6240BCE0300C93963 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47DCF0AD240BCE0300C93963 /* HipoAssignmentTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		47DCF0B0240BCE0300C93963 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 47D3857A2406B45C007BA0BA /* HipoAssignment */;
+			targetProxy = 47DCF0AF240BCE0300C93963 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		47D3858C2406B45F007BA0BA /* LaunchScreen.storyboard */ = {
@@ -472,6 +562,46 @@
 			};
 			name = Release;
 		};
+		47DCF0B2240BCE0300C93963 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 554X8TL4T7;
+				INFOPLIST_FILE = HipoAssignmentTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Emre.HipoAssignmentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HipoAssignment.app/HipoAssignment";
+			};
+			name = Debug;
+		};
+		47DCF0B3240BCE0300C93963 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 554X8TL4T7;
+				INFOPLIST_FILE = HipoAssignmentTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Emre.HipoAssignmentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HipoAssignment.app/HipoAssignment";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -489,6 +619,15 @@
 			buildConfigurations = (
 				47D385932406B45F007BA0BA /* Debug */,
 				47D385942406B45F007BA0BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		47DCF0B1240BCE0300C93963 /* Build configuration list for PBXNativeTarget "HipoAssignmentTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47DCF0B2240BCE0300C93963 /* Debug */,
+				47DCF0B3240BCE0300C93963 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
