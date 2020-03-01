@@ -69,7 +69,7 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == nameTextField || textField == positionTextField || textField == locationTextField {
-            let allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+            let allowedCharacters = "ABCÇDEFGĞHIİJKLMNOÖPQRSŞTUÜVWXYZabcçdefgğhıijklmnoöpqrstuüvwxyz "
             let allowedCharacterSet = CharacterSet(charactersIn: allowedCharacters)
             let typedCharacterSet = CharacterSet(charactersIn: string)
             let alphabet = allowedCharacterSet.isSuperset(of: typedCharacterSet)

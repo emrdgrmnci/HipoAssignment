@@ -35,7 +35,7 @@ class MemberDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         safeArea = view.layoutMarginsGuide
 
         tableView.dataSource = self
@@ -108,7 +108,7 @@ class MemberDetailViewController: UIViewController {
 
         //MARK: -  tableView layouts
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 265).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 235).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
