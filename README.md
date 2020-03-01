@@ -1,9 +1,9 @@
 # Hipo Assignment [![Swift](https://img.shields.io/badge/Swift-5.1+-orange.svg)]() [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)]()
 
-<img src="/ScreenImages/Screen Shot 2020-03-01 at 12.32.30.png" width="300" height= "300" align= "left"/>&nbsp;
-<img src="/ScreenImages/Simulator Screen Shot - iPhone 8 - 2020-03-01 at 12.30.35.png" width="300" height= "300" align= "left"/>&nbsp;
-<img src="/ScreenImages/Simulator Screen Shot - iPhone 8 - 2020-03-01 at 12.32.36.png" width="300" height= "300" align= "left"/>&nbsp;
-<img src="/ScreenImages/Simulator Screen Shot - iPhone 8 - 2020-03-01 at 12.32.54.png" width="300" height= "300" align= "left"/>&nbsp;
+<img src="/ScreenImages/Screen Shot 2020-03-01 at 12.32.30.png" width="300" height= "400" align= "left"/>&nbsp;
+<img src="/ScreenImages/Simulator Screen Shot - iPhone 8 - 2020-03-01 at 12.30.35.png" width="300" height= "400" align= "left"/>&nbsp;
+<img src="/ScreenImages/Simulator Screen Shot - iPhone 8 - 2020-03-01 at 12.32.36.png" width="300" height= "400" align= "left"/>&nbsp;
+<img src="/ScreenImages/Simulator Screen Shot - iPhone 8 - 2020-03-01 at 12.32.54.png" width="300" height= "400" align= "left"/>&nbsp;
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   
 ### ABOUT
