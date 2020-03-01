@@ -22,6 +22,7 @@ class MemberDetailViewController: UIViewController {
     var followersLabel = UILabel()
     var followingLabel = UILabel()
     var imageView = UIImageView()
+    var indicator = UIActivityIndicatorView()
 
     var profileView: UIView = {
         let view = UIView()
@@ -35,7 +36,6 @@ class MemberDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         safeArea = view.layoutMarginsGuide
 
         tableView.dataSource = self

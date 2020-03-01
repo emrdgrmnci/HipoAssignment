@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension String {
-
+    
     func countInstances(of stringToFind: String) -> Int {
         var count = 0
         var searchRange: Range<String.Index>?
@@ -22,14 +22,4 @@ extension String {
     }
 }
 
-extension String {
-  func toDate(withFormat format: String = "yyyy-MM-dd") -> Date {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = format
-    guard let date = dateFormatter.date(from: self) else {
-      preconditionFailure("Look at your format")
-    }
-    return date
-  }
-}
 

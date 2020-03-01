@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Utility: NSObject {
     class func convertFormat(_ unformattedDate: String) -> String {

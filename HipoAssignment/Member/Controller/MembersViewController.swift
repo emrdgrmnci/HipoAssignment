@@ -187,20 +187,7 @@ extension MembersViewController: UITableViewDataSource, UITableViewDelegate {
         memberDetailController.delegate = self
         memberDetailController.title = hipoMembers[indexPath.row].name
         memberDetailController.selectedDetailUserName = hipoMembers[indexPath.row].github
-
     }
 }
 
-/*
- selectedWeather = cities[indexPath.row]
- selectedWeatherId = idArray[indexPath.row]
-
- let storyBoard = UIStoryboard(name: "Main", bundle: nil)
- let detailHistoryVC = storyBoard.instantiateViewController(withIdentifier: "DetailWeatherHistoryViewController") as! DetailWeatherHistoryViewController
- detailHistoryVC.chosenWeather = selectedWeather
- detailHistoryVC.chosenWeatherId = selectedWeatherId
- tableView.deselectRow(at: indexPath, animated: true)
-
- self.navigationController?.pushViewController(detailHistoryVC, animated: true)
- */
 
