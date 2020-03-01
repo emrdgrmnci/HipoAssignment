@@ -13,9 +13,9 @@ Are you Hipo? <b>Hipo Assignment</b> is a sorting, listing and showing hipo memb
 
 - Thirdly, in **MemberDetailViewController** I used two different github apis. One for showing github follower, following and profile picture of selected user. Second for showing github repo name, updated date, star count and which programming languages used in github project.
 
-<li>I coded UI elements programmatically.</li>
-<li>I followed UI design theme as possible as I can.</li> 
-<li>I did not use any 3rd party library.</li> 
+- I coded UI elements programmatically.
+- I followed UI design theme as possible as I can.
+- I did not use any 3rd party library.
 
 ### FEATURES
 <ul>
