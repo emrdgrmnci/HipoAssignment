@@ -12,9 +12,9 @@ let urlForGithubRepo =  "https://api.github.com/users/"
 let urlForGithub = "https://api.github.com/users/"
 
 class GithubRequest{
-
+    
     static func getGithubData(userName: String, completion: @escaping (_ result: Github) -> Void) {
-
+        
         guard let downloadURL =  URL(string: urlForGithub + userName)  else { return }
         URLSession.shared.dataTask(with: downloadURL) { data, urlResponse, error in
             guard let data = data else {return}
@@ -28,7 +28,7 @@ class GithubRequest{
             }
         }.resume()
     }
-
+    
     static func getGithubRepoData(userName: String, completion: @escaping (_ result: [Repo]) -> Void) {
         guard let downloadURL = URL(string: urlForGithubRepo + userName + "/repos")else { return }
         URLSession.shared.dataTask(with: downloadURL) { data, urlResponse, error in
