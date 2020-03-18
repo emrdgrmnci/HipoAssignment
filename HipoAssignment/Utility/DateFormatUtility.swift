@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Utility: NSObject {
+class DateFormatUtility: NSObject {
     class func convertFormat(_ unformattedDate: String) -> String {
         let dateFormatter = DateFormatter()
         let tempLocale = dateFormatter.locale // save locale temporarily
