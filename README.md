@@ -7,7 +7,9 @@ Are you Hipo? <b>Hipo Assignment</b> is a sorting, listing and showing hipo memb
 ### What I did?
 <ul>
 
-- First of all, this project has 1 local json file and 2 github apis which is one for github user infos and the other one is for github reops. I used listing hipo.json datas in table view of **MembersViewController**. I added new members from **AddNewMemberViewController** to **MembersViewController**. When I was adding new members to **MembersViewController** I used **CoreData** in **AddNewMemberViewController** and I did not merge **CoreData** and **hipo.json** datas. So, I saved **hipo.json** datas to **CoreData** manually in **AddNewMemberViewController** textfields.
+- First of all, this project has 1 local json file and 2 github apis which is one for github user infos and the other one is for github reops. I used listing hipo.json datas in table view of **MembersViewController**. I added new members from **AddNewMemberViewController** to **MembersViewController**. When I was adding new members to **MembersViewController** I used **CoreData** in **AddNewMemberViewController** and I did not merge **CoreData** and **hipo.json** datas. So, I saved **hipo.json** datas to **CoreData** manually in **AddNewMemberViewController** textfields. 
+</br>
+**Therefore, MembersViewController screen has no data at the first launch of app!!!** 
 
 - Secondly, with **Sort Members** button I did not sort members with assignment requirements and I did not change UI with sorted objects. I just counted characters of table view cell data with **a** character and printed in console.
 
@@ -16,6 +18,7 @@ Are you Hipo? <b>Hipo Assignment</b> is a sorting, listing and showing hipo memb
 - I coded UI elements programmatically.
 - I followed UI design theme as possible as I can.
 - I did not use any 3rd party library.
+- I wirote test case for api url. 
 
 ### FEATURES
 <ul>
@@ -24,6 +27,7 @@ Are you Hipo? <b>Hipo Assignment</b> is a sorting, listing and showing hipo memb
 <li>Used <a href = "https://developer.apple.com/documentation/coredata">Core Data</a> for local data saving.
 <li>Used <a href = "https://developer.apple.com/documentation/foundation/urlsession">URLSession</a> for network call.
 <li>Used <a href = "https://developer.apple.com/documentation/foundation/userdefaults">UserDefaults</a> in add new member text fields .
+<li>Used <a href = "https://developer.apple.com/documentation/xctest">UnitTest</a> for api url.
 <li>Deployment target: iOS 13.0+</li>
 <li>Supported devices: iPhone 5s, SE, 6, 6 Plus, 6s, 6s Plus, 7, 7 Plus, 8, 8 Plus, iPhone X, iPhone XR, iPhone Xs, iPhone Xs Max, iPhone 11, iPhone 11 Pro, iPhone 11 Pro Max </li>
 </ul>
