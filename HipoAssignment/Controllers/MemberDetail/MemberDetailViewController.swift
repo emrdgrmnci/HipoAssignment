@@ -128,9 +128,15 @@ extension MemberDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemberDetailCell", for: indexPath) as! MemberDetailTableViewCell
 
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
+        let yourDate = formatter.date(from: repos[indexPath.row].updated_at ?? "")
+        formatter.dateFormat = "MMM-dd-yyyy"
+        let myStringafd = formatter.string(from: yourDate!)
+
         cell.languageLabel.text = repos[indexPath.row].language
         cell.repoNameLabel.text = repos[indexPath.row].name
-        cell.dateLabel.text = repos[indexPath.row].updated_at
+        cell.dateLabel.text = "\(String(describing: myStringafd))"
         cell.starLabel.text = "⭐️\(repos[indexPath.row].stargazers_count ?? 0)"
         return cell
     }

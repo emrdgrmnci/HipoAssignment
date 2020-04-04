@@ -9,20 +9,35 @@
 import Foundation
 import UIKit
 
-class DateFormatUtility: NSObject {
-    class func convertFormat(_ unformattedDate: String) -> String {
-        let dateFormatter = DateFormatter()
-        let tempLocale = dateFormatter.locale // save locale temporarily
-        dateFormatter.locale = Locale(identifier: "tr_TR") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        var dateString = ""
-        if let date = dateFormatter.date(from: unformattedDate) {
-            dateFormatter.dateFormat = "dd.MM.yyyy"
-            dateFormatter.locale = tempLocale // reset the locale
-            dateString = dateFormatter.string(from: date)
+extension DateFormatter {
 
-            return dateString
+    static let iso8601DateFormatter: DateFormatter = {
+        let enUSPOSIXLocale = Locale(identifier: "en_US")
+        let iso8601DateFormatter = DateFormatter()
+        iso8601DateFormatter.locale = enUSPOSIXLocale
+        iso8601DateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" /*yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"*/
+        iso8601DateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return iso8601DateFormatter
+    }()
+    
+    static let iso8601WithoutMillisecondsDateFormatter: DateFormatter = {
+        let enUSPOSIXLocale = Locale(identifier: "en_US")
+        let iso8601DateFormatter = DateFormatter()
+        iso8601DateFormatter.locale = enUSPOSIXLocale
+        iso8601DateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" /*"yyyy-MM-dd'T'HH:mm:ss'Z'"*/
+        iso8601DateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return iso8601DateFormatter
+    }()
+
+    static func date(fromISO8601String string: String) -> Date? {
+        if let dateWithMilliseconds = iso8601DateFormatter.date(from: string) {
+            return dateWithMilliseconds
         }
-        return dateString
+
+        if let dateWithoutMilliseconds = iso8601WithoutMillisecondsDateFormatter.date(from: string) {
+            return dateWithoutMilliseconds
+        }
+
+        return nil
     }
 }

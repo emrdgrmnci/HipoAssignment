@@ -30,7 +30,8 @@ class MemberDetailTableViewCell: UITableViewCell {
     }
 
     func configureCell(dateTxt:String){
-        dateLabel.text =  DateFormatUtility.convertFormat(dateTxt)
+        dateLabel.text = "\(String(describing: DateFormatter.date(fromISO8601String: dateTxt)))"
+//        dateLabel.text =  DateFormatUtility.convertFormat(dateTxt)
     }
 
     func setupView() {
