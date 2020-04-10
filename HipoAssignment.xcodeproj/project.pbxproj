@@ -10,7 +10,6 @@
 		471ADCE32407E716004E9033 /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471ADCE22407E716004E9033 /* Github.swift */; };
 		471ADCE72407F2EE004E9033 /* GithubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471ADCE62407F2EE004E9033 /* GithubRequest.swift */; };
 		478F2928240A4D0400823C0E /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478F2927240A4D0400823C0E /* UIViewController+Alert.swift */; };
-		47B97437240BA57500D04730 /* DateFormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B97436240BA57500D04730 /* DateFormatUtility.swift */; };
 		47D2AEED2407BC4A0074F54C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEEC2407BC4A0074F54C /* StringExtension.swift */; };
 		47D2AEF22407CBA80074F54C /* MemberDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEF12407CBA80074F54C /* MemberDetailTableViewCell.swift */; };
 		47D3857F2406B45C007BA0BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D3857E2406B45C007BA0BA /* AppDelegate.swift */; };
@@ -41,7 +40,6 @@
 		471ADCE22407E716004E9033 /* Github.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Github.swift; sourceTree = "<group>"; };
 		471ADCE62407F2EE004E9033 /* GithubRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRequest.swift; sourceTree = "<group>"; };
 		478F2927240A4D0400823C0E /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
-		47B97436240BA57500D04730 /* DateFormatUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatUtility.swift; sourceTree = "<group>"; };
 		47D2AEEC2407BC4A0074F54C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		47D2AEF12407CBA80074F54C /* MemberDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetailTableViewCell.swift; sourceTree = "<group>"; };
 		47D3857B2406B45C007BA0BA /* HipoAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HipoAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,7 +163,6 @@
 		47B97435240BA55100D04730 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				47B97436240BA57500D04730 /* DateFormatUtility.swift */,
 				47D3859F24071215007BA0BA /* Extensions */,
 			);
 			path = Utility;
@@ -351,7 +348,6 @@
 			files = (
 				47D385892406B45C007BA0BA /* HipoAssignment.xcdatamodeld in Sources */,
 				47D385A12407122E007BA0BA /* UIImage.swift in Sources */,
-				47B97437240BA57500D04730 /* DateFormatUtility.swift in Sources */,
 				47D385832406B45C007BA0BA /* MembersViewController.swift in Sources */,
 				478F2928240A4D0400823C0E /* UIViewController+Alert.swift in Sources */,
 				471ADCE32407E716004E9033 /* Github.swift in Sources */,
