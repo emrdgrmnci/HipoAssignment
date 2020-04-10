@@ -93,8 +93,8 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
 
     //MARK: - Setup View
     func setupView() {
-
         view.addSubview(scrollView)
+        scrollView.backgroundColor = .systemBackground
         view.addSubview(nameLabel)
         view.addSubview(nameTextField)
         view.addSubview(positionLabel)
@@ -127,7 +127,7 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         scrollView.addSubview(nameTextField)
         nameTextField.placeholder = "Please enter your name"
         nameTextField.font = UIFont.systemFont(ofSize: 15)
-        nameTextField.backgroundColor = .systemGray2
+        nameTextField.backgroundColor = .systemGray6
         nameTextField.borderStyle = UITextField.BorderStyle.roundedRect
         nameTextField.autocorrectionType = UITextAutocorrectionType.no
         nameTextField.keyboardType = UIKeyboardType.default
@@ -152,7 +152,7 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         scrollView.addSubview(positionTextField)
         positionTextField.placeholder = "Please enter your position"
         positionTextField.font = UIFont.systemFont(ofSize: 15)
-        positionTextField.backgroundColor = .systemGray2
+        positionTextField.backgroundColor = .systemGray6
         positionTextField.borderStyle = UITextField.BorderStyle.roundedRect
         positionTextField.autocorrectionType = UITextAutocorrectionType.no
         positionTextField.keyboardType = UIKeyboardType.default
@@ -177,7 +177,7 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         scrollView.addSubview(ageTextField)
         ageTextField.placeholder = "Please enter your age"
         ageTextField.font = UIFont.systemFont(ofSize: 15)
-        ageTextField.backgroundColor = .systemGray2
+        ageTextField.backgroundColor = .systemGray6
         ageTextField.borderStyle = UITextField.BorderStyle.roundedRect
         ageTextField.autocorrectionType = UITextAutocorrectionType.no
         ageTextField.keyboardType = UIKeyboardType.default
@@ -202,7 +202,7 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         scrollView.addSubview(locationTextField)
         locationTextField.placeholder = "Please enter your location"
         locationTextField.font = UIFont.systemFont(ofSize: 15)
-        locationTextField.backgroundColor = .systemGray2
+        locationTextField.backgroundColor = .systemGray6
         locationTextField.borderStyle = UITextField.BorderStyle.roundedRect
         locationTextField.autocorrectionType = UITextAutocorrectionType.no
         locationTextField.keyboardType = UIKeyboardType.default
@@ -227,7 +227,7 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         scrollView.addSubview(yearsInHipoTextField)
         yearsInHipoTextField.placeholder = "Please enter how many years you worked in Hipo"
         yearsInHipoTextField.font = UIFont.systemFont(ofSize: 15)
-        yearsInHipoTextField.backgroundColor = .systemGray2
+        yearsInHipoTextField.backgroundColor = .systemGray6
         yearsInHipoTextField.borderStyle = UITextField.BorderStyle.roundedRect
         yearsInHipoTextField.autocorrectionType = UITextAutocorrectionType.no
         yearsInHipoTextField.keyboardType = UIKeyboardType.default
@@ -252,7 +252,7 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         scrollView.addSubview(githubTextField)
         githubTextField.placeholder = "Please enter your Github username"
         githubTextField.font = UIFont.systemFont(ofSize: 15)
-        githubTextField.backgroundColor = .systemGray2
+        githubTextField.backgroundColor = .systemGray6
         githubTextField.borderStyle = UITextField.BorderStyle.roundedRect
         githubTextField.autocorrectionType = UITextAutocorrectionType.no
         githubTextField.keyboardType = UIKeyboardType.default

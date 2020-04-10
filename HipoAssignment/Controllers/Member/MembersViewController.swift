@@ -106,6 +106,7 @@ class MembersViewController: UIViewController {
 
     //MARK: - Setup View
     func setupView() {
+        view.backgroundColor = .systemBackground
         view.addSubview(tableView)
         view.addSubview(sortMembersButton)
         view.addSubview(addNewMemberButton)
