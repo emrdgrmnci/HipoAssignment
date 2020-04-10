@@ -29,10 +29,10 @@ class MemberDetailTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configureCell(dateTxt:String){
-        dateLabel.text = "\(String(describing: DateFormatter.date(fromISO8601String: dateTxt)))"
-//        dateLabel.text =  DateFormatUtility.convertFormat(dateTxt)
-    }
+//    func configureCell(dateTxt:String){
+//        dateLabel.text = "\(String(describing: DateFormatter.date(fromISO8601String: dateTxt)))"
+////        dateLabel.text =  DateFormatUtility.convertFormat(dateTxt)
+//    }
 
     func setupView() {
         repoNameLabel.translatesAutoresizingMaskIntoConstraints = false
