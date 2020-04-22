@@ -11,27 +11,27 @@ import Foundation
 
 class MemberDetailViewController: UIViewController {
 
-    var repos = [Repo]()
-    var github: Github?
+   private var repos = [Repo]()
+   private var github: Github?
 
     var selectedDetailUserName: String = ""
 
     weak var delegate: MembersViewController!
 
-    var tableView = UITableView()
-    var followersLabel = UILabel()
-    var followingLabel = UILabel()
-    var imageView = UIImageView()
-    var indicator = UIActivityIndicatorView()
+   private var tableView = UITableView()
+   private var followersLabel = UILabel()
+   private var followingLabel = UILabel()
+   private var imageView = UIImageView()
+   private var indicator = UIActivityIndicatorView()
 
-    var profileView: UIView = {
+   private var profileView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(red:0.14, green:0.16, blue:0.18, alpha: 1.0)
         return view
     }()
 
-    var safeArea: UILayoutGuide!
+   private var safeArea: UILayoutGuide!
 
     // MARK: - View's Lifecycle
     override func viewDidLoad() {
