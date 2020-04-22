@@ -47,7 +47,7 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
     // MARK: - View's Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Add New Member"
+        self.title = NSLocalizedString("Add New Member", comment: "")
 
         nameTextField.delegate = self
         positionTextField.delegate = self
@@ -93,11 +93,6 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    public static func Init<Type>(value : Type, block: (_ object: Type) -> Void) -> Type {
-        block(value)
-        return value
-    }
-
     //MARK: - Setup View
     func setupView() {
         viewAddSubView()
@@ -114,18 +109,18 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
 
         activateAllConstraints()
 
-        nameLabel.text = "Name:"
-        nameTextField.placeholder = "Please enter your name"
-        positionLabel.text = "Position:"
-        positionTextField.placeholder = "Please enter your position"
-        ageLabel.text = "Age:"
-        ageTextField.placeholder = "Please enter your age"
-        locationLabel.text = "Location:"
-        locationTextField.placeholder = "Please enter your location"
-        yearsInHipoLabel.text = "Number of years in Hipo:"
-        yearsInHipoTextField.placeholder = "Please enter how many years you worked in Hipo"
-        githubLabel.text = "Github:"
-        githubTextField.placeholder = "Please enter your Github username"
+        nameLabel.text = NSLocalizedString("Name:", comment: "")
+        nameTextField.placeholder = NSLocalizedString("Please enter your name", comment: "")
+        positionLabel.text = NSLocalizedString("Position:", comment: "")
+        positionTextField.placeholder = NSLocalizedString("Please enter your position",comment: "")
+        ageLabel.text = NSLocalizedString("Age:", comment: "")
+        ageTextField.placeholder = NSLocalizedString("Please enter your age", comment: "")
+        locationLabel.text = NSLocalizedString("Location:", comment: "")
+        locationTextField.placeholder = NSLocalizedString("Please enter your location", comment: "")
+        yearsInHipoLabel.text = NSLocalizedString("Number of years in Hipo:", comment: "")
+        yearsInHipoTextField.placeholder = NSLocalizedString("Please enter how many years you worked in Hipo", comment: "")
+        githubLabel.text = NSLocalizedString("Github:", comment: "")
+        githubTextField.placeholder = NSLocalizedString("Please enter your Github username", comment: "")
         saveButtonConstraints()
     }
 
@@ -295,8 +290,14 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         saveNewMember.setValue(Int(yearsInHipoTextField.text ?? "0"), forKey: "years_in_hipo")
         do {
             try context.save()
-            let alert = UIAlertController (title: "SAVED", message: "New member saved successfully!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ (alertOKAction) in
+
+            let titleSaved = NSLocalizedString("SAVED", comment: "")
+            let messageSaved = NSLocalizedString("New member saved successfully!", comment: "")
+
+            let titleOK = NSLocalizedString("OK", comment: "")
+
+            let alert = UIAlertController (title: titleSaved, message: messageSaved, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: titleOK, style: .cancel, handler:{ (alertOKAction) in
                 self.dismiss(animated: false, completion: nil)
                 self.navigationController!.popToRootViewController(animated: true)
             }))
@@ -305,7 +306,11 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
 
             print("Success!")
         } catch {
-            self.showAlert(withTitle: "Error", withMessage: "New member does not saved successfully!")
+
+            let titleError = NSLocalizedString("Error", comment: "")
+            let messageError = NSLocalizedString("New member does not saved successfully!", comment: "")
+
+            self.showAlert(withTitle: titleError, withMessage: messageError)
             print(error.localizedDescription)
         }
     }

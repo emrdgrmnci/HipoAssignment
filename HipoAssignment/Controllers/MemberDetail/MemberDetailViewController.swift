@@ -55,9 +55,9 @@ class MemberDetailViewController: UIViewController {
         GithubRequest.getGithubData(userName: selectedDetailUserName) { (result) in
             guard let avatarUrl = result.avatar_url, let url = URL(string: avatarUrl), let data = try? Data(contentsOf: url) else { return }
             DispatchQueue.main.async {
-                self.imageView.image=UIImage(data: data as Data)
-                self.followersLabel.text = "Followers \(result.followers ?? 0)"
-                self.followingLabel.text = "Following \(result.following ?? 0)"
+                self.imageView.image = UIImage(data: data as Data)
+                self.followersLabel.text = NSLocalizedString("Followers \(result.followers ?? 0)", comment: "")
+                self.followingLabel.text = NSLocalizedString("Following \(result.following ?? 0)", comment: "")
             }
         }
     }
@@ -94,8 +94,8 @@ class MemberDetailViewController: UIViewController {
         imageView.layer.cornerRadius = 16  /*self.imageView.frame.width/4.0*/
         imageView.clipsToBounds = true
 
-        followersLabel.text = "Followers 10"
-        followingLabel.text = "Following 20"
+        followersLabel.text = NSLocalizedString("Followers 10", comment: "")
+        followingLabel.text = NSLocalizedString("Following 20", comment: "")
 
         //MARK: -  tableView layouts
         tableView.register(MemberDetailTableViewCell.self, forCellReuseIdentifier: "MemberDetailTableViewCell")
@@ -138,7 +138,7 @@ class MemberDetailViewController: UIViewController {
 //MARK: - UITableViewDataSource
 extension MemberDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Repositories"
+        return NSLocalizedString("Repositories", comment: "")
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repos.count
@@ -149,8 +149,8 @@ extension MemberDetailViewController: UITableViewDataSource {
 
         cell.languageLabel.text = repos[indexPath.row].language
         cell.repoNameLabel.text = repos[indexPath.row].name
-        cell.dateLabel.text = "\(String(describing: formattedDate(of: repos[indexPath.row].updated_at ?? "")))"
-        cell.starLabel.text = "⭐️\(repos[indexPath.row].stargazers_count ?? 0)"
+        cell.dateLabel.text = "\(String(describing: formattedDate(of: repos[indexPath.row].updatedAt ?? "")))"
+        cell.starLabel.text = "⭐️\(repos[indexPath.row].stargazersCount ?? 0)"
         return cell
     }
 }

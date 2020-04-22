@@ -35,22 +35,22 @@ struct Github: Codable {
 // MARK: - Repo
 struct Repo : Codable {
     let name : String?
-    let updated_at : String?
-    let stargazers_count : Int?
+    let updatedAt : String?
+    let stargazersCount : Int?
     let language : String?
 
     enum CodingKeys: String, CodingKey {
         case name = "name"
-        case updated_at = "updated_at"
-        case stargazers_count = "stargazers_count"
+        case updatedAt = "updated_at"
+        case stargazersCount = "stargazers_count"
         case language = "language"
     }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         name = try values.decodeIfPresent(String.self, forKey: .name)
-        updated_at = try values.decodeIfPresent(String.self, forKey: .updated_at)
-        stargazers_count = try values.decodeIfPresent(Int.self, forKey: .stargazers_count)
+        updatedAt = try values.decodeIfPresent(String.self, forKey: .updatedAt)
+        stargazersCount = try values.decodeIfPresent(Int.self, forKey: .stargazersCount)
         language = try values.decodeIfPresent(String.self, forKey: .language)
     }
 

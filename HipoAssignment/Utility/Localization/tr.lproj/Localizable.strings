@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  HipoAssignment
+
+  Created by Ali Emre Değirmenci on 22.04.2020.
+  Copyright © 2020 Ali Emre Degirmenci. All rights reserved.
+*/
+"SORT MEMBERS" = "ÜYELERİ SIRALA";
+"ADD NEW MEMBER" = "YENİ ÜYE EKLE";
+"Add New Member" = "Yeni Üye Ekle";
+"Members" = "Üyeler";
+"Repositories" = "Repolar";
+"Followers" = "Takipçiler";
+"Following" = "Takip Edilenler";
+"Followers 10" = "Takipçiler 10";
+"Following 20" = "Takip Edilenler 20";
+"Name:" = "İsim:";
+"Please enter your name" = "Lütfen isminizi giriniz";
+"Position:" = "Pozisyon:";
+"Please enter your position" = "Lütfen pozisyonunuzu giriniz";
+"Age" = "Yaş";
+"Please enter your age" = "Lütfen yaşınızı giriniz";
+"Location:" = "Konum:";
+"Please enter your location" = "Lütfen konumunuzu giriniz";
+"Number of years in Hipo:" = "Hipo'da çalışılan yıl";
+"Please enter how many years you worked in Hipo" = "Lütfen Hipo'da çalıştığınız yılı giriniz";
+"Github:" = "Github:";
+"SAVED" = "KAYDEDİLDİ";
+"New member saved successfully!" = "Yeni üye başarı ile kaydedildi!";
+"OK" = "TAMAM";
+"Error" = "Hata";
+"New member does not saved successfully!" = "Yeni üye kaydedilemedi!";

@@ -1,0 +1,34 @@
+/* 
+ Localizable.strings
+ HipoAssignment
+
+ Created by Ali Emre Değirmenci on 22.04.2020.
+ Copyright © 2020 Ali Emre Degirmenci. All rights reserved.
+ */
+
+"SORT MEMBERS"   ="SORT MEMBERS";
+"ADD NEW MEMBER" ="ADD NEW MEMBER";
+"Add New Member" ="Add New Member";
+"Members"        ="Members";
+"Repositories"  = "Repositories";
+"Followers"     = "Followers";
+"Following"     = "Following";
+"Followers 10"  = "Followers 10";
+"Following 20"  = "Following 20";
+"Name:" = "Name:";
+"Please enter your name" = "Please enter your name";
+"Position:" = "Position:";
+"Please enter your position" = "Please enter your position";
+"Age" = "Age";
+"Please enter your age" = "Please enter your age";
+"Location:" = "Location:";
+"Please enter your location" = "Please enter your location";
+"Number of years in Hipo:" = "Number of years in Hipo:";
+"Please enter how many years you worked in Hipo" = "Please enter how many years you worked in Hipo";
+"Github:" = "Github:";
+"SAVED" = "SAVED";
+"New member saved successfully!" = "New member saved successfully!";
+"OK" = "OK";
+"Error" = "Error";
+"New member does not saved successfully!" = "New member does not saved successfully!";
+
