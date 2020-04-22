@@ -37,21 +37,21 @@ class MemberDetailTableViewCell: UITableViewCell {
     func setupView() {
         repoNameLabel.translatesAutoresizingMaskIntoConstraints = false
         repoNameLabel.font = repoNameLabel.font.withSize(14)
-        repoNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+        repoNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30).isActive = true
 
         languageLabel.translatesAutoresizingMaskIntoConstraints = false
         languageLabel.textColor = UIColor(red:0.18, green:0.73, blue:0.31, alpha:1.0)
         languageLabel.font = languageLabel.font.withSize(12)
-        languageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+        languageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30).isActive = true
         languageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12).isActive = true
 
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.font = dateLabel.font.withSize(14)
-        dateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        dateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
 
         starLabel.translatesAutoresizingMaskIntoConstraints = false
         starLabel.font = starLabel.font.withSize(12)
-        starLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        starLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
         starLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12).isActive = true
     }
 }
