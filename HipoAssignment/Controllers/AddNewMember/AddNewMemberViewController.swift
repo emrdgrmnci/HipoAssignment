@@ -11,22 +11,22 @@ import CoreData
 
 class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
 
-    var nameArray = [String]()
-    var positionArray = [String]()
-    var ageArray = [Int]()
-    var locationArray = [String]()
-    var yearsInHipoArray = [Int]()
-    var githubArray = [String]()
+    private var nameArray = [String]()
+    private var positionArray = [String]()
+    private var ageArray = [Int]()
+    private var locationArray = [String]()
+    private var yearsInHipoArray = [Int]()
+    private var githubArray = [String]()
 
     //UI Components
-    lazy var nameLabel = UILabel()
-    lazy var positionLabel = UILabel()
-    lazy var ageLabel = UILabel()
-    lazy var locationLabel = UILabel()
-    lazy var yearsInHipoLabel = UILabel()
-    lazy var githubLabel = UILabel()
-    lazy var saveButton = UIButton()
-    lazy var scrollView: UIScrollView = {
+    lazy private var nameLabel = UILabel()
+    lazy private var positionLabel = UILabel()
+    lazy private var ageLabel = UILabel()
+    lazy private var locationLabel = UILabel()
+    lazy private var yearsInHipoLabel = UILabel()
+    lazy private var githubLabel = UILabel()
+    lazy private var saveButton = UIButton()
+    lazy private var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentSize.height = 900
@@ -35,14 +35,14 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         return view
     }()
 
-    lazy var nameTextField = UITextField()
-    lazy var positionTextField = UITextField()
-    lazy var ageTextField = UITextField()
-    lazy var locationTextField = UITextField()
-    lazy var yearsInHipoTextField = UITextField()
-    lazy var githubTextField = UITextField()
+    lazy private var nameTextField = UITextField()
+    lazy private var positionTextField = UITextField()
+    lazy private var ageTextField = UITextField()
+    lazy private var locationTextField = UITextField()
+    lazy private var yearsInHipoTextField = UITextField()
+    lazy private var githubTextField = UITextField()
 
-    var safeArea: UILayoutGuide!
+    private var safeArea: UILayoutGuide!
 
     // MARK: - View's Lifecycle
     override func viewDidLoad() {

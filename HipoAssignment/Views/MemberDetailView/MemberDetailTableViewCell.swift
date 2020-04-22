@@ -10,10 +10,10 @@ import UIKit
 
 class MemberDetailTableViewCell: UITableViewCell {
 
-    var repoNameLabel = UILabel()
-    var languageLabel = UILabel()
-    var dateLabel = UILabel()
-    var starLabel = UILabel()
+    private(set) var repoNameLabel = UILabel()
+    private(set) var languageLabel = UILabel()
+    private(set) var dateLabel = UILabel()
+    private(set) var starLabel = UILabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
