@@ -13,17 +13,17 @@ import CoreData
 class MembersViewController: UIViewController {
 
     //UI Components
-    var tableView = UITableView()
+    private var tableView = UITableView()
     @objc lazy var sortMembersButton = UIButton()
     @objc lazy var addNewMemberButton = UIButton()
-    var buttonStackView = UIStackView()
+    private var buttonStackView = UIStackView()
 
-    var memberArray = [Member]()
-    var hipoMembers: [Member] = []
-    var githubInfo = [Github]()
-    var repos = [Repo]()
+    private var memberArray = [Member]()
+    private var hipoMembers: [Member] = []
+    private var githubInfo = [Github]()
+    private var repos = [Repo]()
 
-    var safeArea: UILayoutGuide!
+    private var safeArea: UILayoutGuide!
 
     // MARK: - View's Lifecycle
     override func viewDidLoad() {
