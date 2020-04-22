@@ -110,43 +110,39 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
 
         scrollViewAddSubView()
 
+        activateAllConstraints()
+
         nameLabel.text = "Name:"
-        nameLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20).isActive = true
-
         nameTextField.placeholder = "Please enter your name"
-        nameTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 40).isActive = true
-
         positionLabel.text = "Position:"
-        positionLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 100).isActive = true
-
         positionTextField.placeholder = "Please enter your position"
-        positionTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 120).isActive = true
-
         ageLabel.text = "Age:"
-        ageLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 180).isActive = true
-
         ageTextField.placeholder = "Please enter your age"
-        ageTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 200).isActive = true
-
         locationLabel.text = "Location:"
-        locationLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 260).isActive = true
-
         locationTextField.placeholder = "Please enter your location"
-        locationTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 280).isActive = true
-
         yearsInHipoLabel.text = "Number of years in Hipo:"
-        yearsInHipoLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 340).isActive = true
-
         yearsInHipoTextField.placeholder = "Please enter how many years you worked in Hipo"
-        yearsInHipoTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 360).isActive = true
-
         githubLabel.text = "Github:"
-        githubLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 420).isActive = true
-
         githubTextField.placeholder = "Please enter your Github username"
-        githubTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 440).isActive = true
-
         saveButtonConstraints()
+    }
+
+    //MARK: - activateAllConstraints
+    func activateAllConstraints() {
+        NSLayoutConstraint.activate([
+            nameLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            nameTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 40),
+            positionLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 100),
+            positionTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 120),
+            ageLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 180),
+            ageTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 200),
+            locationLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 260),
+            locationTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 280),
+            yearsInHipoLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 340),
+            yearsInHipoTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 360),
+            githubLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 420),
+            githubTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 440)
+        ])
     }
 
     //MARK: - viewAddSubView()

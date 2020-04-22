@@ -22,19 +22,17 @@ class MembersViewController: UIViewController {
     var hipoMembers: [Member] = []
     var githubInfo = [Github]()
     var repos = [Repo]()
-    //    var repoElement:Repo? = nil
 
     var safeArea: UILayoutGuide!
 
+    // MARK: - View's Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
         self.title = "Members"
 
-        //        getData()
         getNewMemberDataToMembersTableView()
-//        getJSONData()
 
         safeArea = view.layoutMarginsGuide
 
@@ -56,13 +54,10 @@ class MembersViewController: UIViewController {
     @objc func getNewMemberDataToMembersTableView() {
 
         hipoMembers.removeAll(keepingCapacity: false)
-
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "HipoMember")
         fetchRequest.returnsObjectsAsFaults = false
-
         do {
             let results = try context.fetch(fetchRequest)
             if results.count > 0 {
@@ -71,31 +66,24 @@ class MembersViewController: UIViewController {
                     if let name = result.value(forKey: "name") as? String {
                         member.name = name
                     }
-
                     if let age = result.value(forKey: "age") as? Int {
                         member.age = age
                     }
-
                     if let location = result.value(forKey: "location") as? String {
                         member.location = location
                     }
-
-
                     if let github = result.value(forKey: "github") as? String {
                         member.github = github
                     }
-
                     if let position = result.value(forKey: "position") as? String {
                         member.hipo.position = position
                     }
-
                     if let yearsInHipo = result.value(forKey: "years_in_hipo") as? Int {
                         member.hipo.yearsInHipo = yearsInHipo
                     }
                     if member.name != "" {
                         hipoMembers.append(member)
                     }
-
                 }
             }
             self.tableView.reloadData()
@@ -111,49 +99,64 @@ class MembersViewController: UIViewController {
         view.addSubview(sortMembersButton)
         view.addSubview(addNewMemberButton)
 
+        buttonConstraints()
+        activateAllConstraints()
+
         //MARK: - sort members button layouts
         sortMembersButton.setTitle("SORT MEMBERS", for: .normal)
         sortMembersButton.backgroundColor = UIColor(red:0.17, green:0.19, blue:0.22, alpha:1.0)
-        sortMembersButton.translatesAutoresizingMaskIntoConstraints = false
-        sortMembersButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 50).isActive = true
-        sortMembersButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50).isActive = true
-        sortMembersButton.bottomAnchor.constraint(equalTo: addNewMemberButton.topAnchor, constant: -20).isActive = true
-        sortMembersButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50).isActive = true
-        sortMembersButton.widthAnchor.constraint(equalToConstant: 285).isActive = true
-        sortMembersButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         sortMembersButton.layer.cornerRadius = 25
 
         //MARK: - add new member button layouts
         addNewMemberButton.setTitle("ADD NEW MEMBER", for: .normal)
         addNewMemberButton.backgroundColor = UIColor(red:0.18, green:0.73, blue:0.31, alpha:1.0)
-        addNewMemberButton.translatesAutoresizingMaskIntoConstraints = false
-        addNewMemberButton.topAnchor.constraint(equalTo: sortMembersButton.bottomAnchor, constant: -20).isActive = true
-        addNewMemberButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50).isActive = true
-        addNewMemberButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
-        addNewMemberButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50).isActive = true
-        addNewMemberButton.widthAnchor.constraint(equalToConstant: 285).isActive = true
-        addNewMemberButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         addNewMemberButton.layer.cornerRadius = 25
 
         //MARK: -  tableView layouts
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -250).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+
     }
 
-    //MARK: - Sort Members Button Click
+    //MARK: - activateAllConstraints
+    func activateAllConstraints() {
+        NSLayoutConstraint.activate([
+            sortMembersButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 50),
+            sortMembersButton.bottomAnchor.constraint(equalTo: addNewMemberButton.topAnchor, constant: -20),
+            addNewMemberButton.topAnchor.constraint(equalTo: sortMembersButton.bottomAnchor, constant: -20),
+            addNewMemberButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
 
+            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -250),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+
+    //MARK: - buttonConstraints
+    func buttonConstraints() {
+        [sortMembersButton, addNewMemberButton] .forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+
+            NSLayoutConstraint.activate([
+                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+                $0.widthAnchor.constraint(equalToConstant: 285),
+                $0.heightAnchor.constraint(equalToConstant: 50)
+            ])
+        }
+    }
+
+
+    //MARK: - Sort Members Button Click
     // I am only counted characters of members who has "a" letters in their name
-       @objc func sortMembersButtonClicked(_ sender: UIButton?) {
-           print("Sort Button Clicked")
-           hipoMembers.forEach {
+    @objc func sortMembersButtonClicked(_ sender: UIButton?) {
+        print("Sort Button Clicked")
+        hipoMembers.forEach {
             sortingMembers(with: [$0.name.lowercased()], char: "a")
-               print("\($0.name.countInstances(of: "a"))")
-               print("\($0.name)")
-           }
-       }
+            print("\($0.name.countInstances(of: "a"))")
+            print("\($0.name)")
+        }
+    }
 
     //MARK: - Add New Member Button Click
     @objc func addNewMemberButtonClicked(_ sender: UIButton?) {
@@ -179,7 +182,7 @@ extension MembersViewController: UITableViewDataSource, UITableViewDelegate {
         cell.accessoryType = .disclosureIndicator
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard hipoMembers.count != 0 else {return}
