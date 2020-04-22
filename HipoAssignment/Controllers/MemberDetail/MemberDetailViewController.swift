@@ -33,6 +33,7 @@ class MemberDetailViewController: UIViewController {
 
     var safeArea: UILayoutGuide!
 
+    // MARK: - View's Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,6 +50,7 @@ class MemberDetailViewController: UIViewController {
         getGithubRepoData()
     }
 
+    //MARK: - getGithubData
     func getGithubData(){
         GithubRequest.getGithubData(userName: selectedDetailUserName) { (result) in
             guard let avatarUrl = result.avatar_url, let url = URL(string: avatarUrl), let data = try? Data(contentsOf: url) else { return }
@@ -60,6 +62,7 @@ class MemberDetailViewController: UIViewController {
         }
     }
 
+    //MARK: - getGithubRepoData
     func getGithubRepoData(){
         GithubRequest.getGithubRepoData(userName: selectedDetailUserName) { (result) in
             self.repos = result
@@ -69,6 +72,7 @@ class MemberDetailViewController: UIViewController {
         }
     }
 
+    //MARK: - setupView
     func setupView() {
         view.addSubview(profileView)
         view.addSubview(imageView)
@@ -76,46 +80,51 @@ class MemberDetailViewController: UIViewController {
         view.addSubview(followingLabel)
         view.addSubview(tableView)
 
-        profileView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
-        profileView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        profileView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        profileView.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
+        activateAllConstraints()
 
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        [imageView, followersLabel, followingLabel, tableView].forEach {$0.translatesAutoresizingMaskIntoConstraints = false}
+        [followersLabel, followingLabel].forEach {
+            $0.textColor = .white
+            $0.font = $0.font.withSize(13)
+        }
+
         imageView.image = UIImage(named: "businessman")
         imageView.layer.borderWidth = 1.0
         imageView.layer.borderColor = UIColor.lightGray.cgColor
         imageView.layer.cornerRadius = 16  /*self.imageView.frame.width/4.0*/
         imageView.clipsToBounds = true
-        imageView.heightAnchor.constraint(equalToConstant: 64).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 64).isActive = true
-        imageView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
-        imageView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 40).isActive = true
 
         followersLabel.text = "Followers 10"
-        followersLabel.font = followersLabel.font.withSize(13)
-        followersLabel.textColor = .white
-        followersLabel.translatesAutoresizingMaskIntoConstraints = false
-        followersLabel.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor, constant: -80).isActive = true
-        followersLabel.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 120).isActive = true
-
         followingLabel.text = "Following 20"
-        followingLabel.font = followingLabel.font.withSize(13)
-        followingLabel.textColor = .white
-        followingLabel.translatesAutoresizingMaskIntoConstraints = false
-        followingLabel.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor, constant: 80).isActive = true
-        followingLabel.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 120).isActive = true
 
         //MARK: -  tableView layouts
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 235).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.register(MemberDetailTableViewCell.self, forCellReuseIdentifier: "MemberDetailTableViewCell")
         tableView.rowHeight = 51
     }
 
+    //MARK: - activateAllConstraints
+    func activateAllConstraints() {
+        NSLayoutConstraint.activate([
+            profileView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            profileView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            profileView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            profileView.bottomAnchor.constraint(equalTo: tableView.topAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 64),
+            imageView.widthAnchor.constraint(equalToConstant: 64),
+            imageView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            imageView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 40),
+            followersLabel.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor, constant: -80),
+            followersLabel.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 120),
+            followingLabel.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor, constant: 80),
+            followingLabel.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 120),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 235),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+
+    //MARK: - formattedDate
     public func formattedDate(of publishedAt: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
@@ -126,6 +135,7 @@ class MemberDetailViewController: UIViewController {
     }
 }
 
+//MARK: - UITableViewDataSource
 extension MemberDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Repositories"

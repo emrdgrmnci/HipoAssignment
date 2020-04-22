@@ -44,6 +44,7 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
 
     var safeArea: UILayoutGuide!
 
+    // MARK: - View's Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Add New Member"
@@ -67,6 +68,7 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         saveLocalData()
     }
 
+    //MARK: - Textfield Range
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == nameTextField || textField == positionTextField || textField == locationTextField {
             let allowedCharacters = "ABCÇDEFGĞHIİJKLMNOÖPQRSŞTUÜVWXYZabcçdefgğhıijklmnoöpqrstuüvwxyz "
