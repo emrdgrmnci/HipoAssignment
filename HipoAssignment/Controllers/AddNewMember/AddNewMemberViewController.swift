@@ -29,9 +29,15 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
     lazy private var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentSize.height = 900
+//                view.contentSize.height = 900
         view.backgroundColor = .white
+        return view
+    }()
 
+    lazy private var stackView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
         return view
     }()
 
@@ -57,6 +63,7 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         ageTextField.delegate = self
 
         setupView()
+        setupStackView()
         getUserDefaults()
 
         saveButton.addTarget(self, action:#selector(self.saveNewMemberButtonClicked), for: .touchUpInside)
@@ -105,7 +112,7 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         textFieldConstraints()
         scrollViewConstraints()
 
-        scrollViewAddSubView()
+        //        scrollViewAddSubView()
 
         activateAllConstraints()
 
@@ -138,7 +145,10 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
             yearsInHipoLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 340),
             yearsInHipoTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 360),
             githubLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 420),
-            githubTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 440)
+            githubTextField.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 440),
+            githubTextField.heightAnchor.constraint(equalToConstant: 50),
+            githubTextField.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -10),
+            saveButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 10),
         ])
     }
 
@@ -160,21 +170,47 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(saveButton)
     }
 
-    //MARK: - scrollViewAddSubView
-    func scrollViewAddSubView() {
-        scrollView.addSubview(nameLabel)
-        scrollView.addSubview(nameTextField)
-        scrollView.addSubview(positionLabel)
-        scrollView.addSubview(positionTextField)
-        scrollView.addSubview(ageLabel)
-        scrollView.addSubview(ageTextField)
-        scrollView.addSubview(locationLabel)
-        scrollView.addSubview(locationTextField)
-        scrollView.addSubview(yearsInHipoLabel)
-        scrollView.addSubview(yearsInHipoTextField)
-        scrollView.addSubview(githubLabel)
-        scrollView.addSubview(githubTextField)
-        scrollView.addSubview(saveButton)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+//        scrollView.contentSize = CGSize(width:self.view.frame.size.width, height: 1000) // set height according you
+        scrollView.contentSize = CGSize(width: stackView.frame.width, height: stackView.frame.height)
+    }
+
+    func setupStackView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(stackView)
+        // Pin the edges of the stack view to the edges of the scroll view that contains it
+        stackView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        // Set the width of the stack view to the width of the scroll view for vertical scrolling
+        stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive = true
+
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView]|", options: .alignAllCenterX, metrics: nil, views: ["scrollView": scrollView]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollView]|", options: .alignAllCenterX, metrics: nil, views: ["scrollView": scrollView]))
+
+        stackView.axis = .vertical
+//        scrollView.isScrollEnabled = true
+
+        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: NSLayoutConstraint.FormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": stackView]))
+        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]", options: NSLayoutConstraint.FormatOptions.alignAllCenterX, metrics: nil, views: ["stackView": stackView]))
+
+        stackView.addArrangedSubview(nameLabel)
+        stackView.addArrangedSubview(nameTextField)
+        stackView.addArrangedSubview(positionLabel)
+        stackView.addArrangedSubview(positionTextField)
+        stackView.addArrangedSubview(ageLabel)
+        stackView.addArrangedSubview(ageTextField)
+        stackView.addArrangedSubview(locationLabel)
+        stackView.addArrangedSubview(locationTextField)
+        stackView.addArrangedSubview(yearsInHipoLabel)
+        stackView.addArrangedSubview(yearsInHipoTextField)
+        stackView.addArrangedSubview(githubLabel)
+        stackView.addArrangedSubview(githubTextField)
+        stackView.addArrangedSubview(saveButton)
+
     }
 
     //MARK: - labelUI
@@ -231,7 +267,7 @@ class AddNewMemberViewController: UIViewController, UITextFieldDelegate {
         saveButton.setTitle("SAVE", for: .normal)
         saveButton.backgroundColor = UIColor(red:0.18, green:0.73, blue:0.31, alpha:1.0)
         saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50).isActive = true
-        saveButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 560).isActive = true
+        saveButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 50).isActive = true
         saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50).isActive = true
         saveButton.widthAnchor.constraint(equalToConstant: 285).isActive = true
         saveButton.heightAnchor.constraint(equalToConstant: 50).isActive = true

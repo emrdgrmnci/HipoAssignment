@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "47DCF08D240BCD7300C93963"
+               BlueprintIdentifier = "47DCF0A9240BCE0300C93963"
                BuildableName = "HipoAssignmentTests.xctest"
                BlueprintName = "HipoAssignmentTests"
                ReferencedContainer = "container:HipoAssignment.xcodeproj">

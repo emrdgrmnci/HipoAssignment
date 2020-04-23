@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47181B2424522E5E000C011C /* NewMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47181B2324522E5E000C011C /* NewMemberViewController.swift */; };
 		471ADCE32407E716004E9033 /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471ADCE22407E716004E9033 /* Github.swift */; };
 		471ADCE72407F2EE004E9033 /* GithubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471ADCE62407F2EE004E9033 /* GithubRequest.swift */; };
 		478F2928240A4D0400823C0E /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478F2927240A4D0400823C0E /* UIViewController+Alert.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		47181B2324522E5E000C011C /* NewMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMemberViewController.swift; sourceTree = "<group>"; };
 		471ADCE22407E716004E9033 /* Github.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Github.swift; sourceTree = "<group>"; };
 		471ADCE62407F2EE004E9033 /* GithubRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRequest.swift; sourceTree = "<group>"; };
 		478F2927240A4D0400823C0E /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				4738F3AA2422356300A05A88 /* Data */,
 				47D385972406C02A007BA0BA /* AddNewMemberViewController.swift */,
+				47181B2324522E5E000C011C /* NewMemberViewController.swift */,
 			);
 			path = AddNewMember;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				47D3857F2406B45C007BA0BA /* AppDelegate.swift in Sources */,
 				471ADCE72407F2EE004E9033 /* GithubRequest.swift in Sources */,
 				47D385962406BC71007BA0BA /* MemberDetailViewController.swift in Sources */,
+				47181B2424522E5E000C011C /* NewMemberViewController.swift in Sources */,
 				47D2AEED2407BC4A0074F54C /* StringExtension.swift in Sources */,
 				47D385812406B45C007BA0BA /* SceneDelegate.swift in Sources */,
 			);
