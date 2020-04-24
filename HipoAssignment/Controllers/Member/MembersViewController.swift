@@ -161,7 +161,7 @@ class MembersViewController: UIViewController {
     //MARK: - Add New Member Button Click
     @objc func addNewMemberButtonClicked(_ sender: UIButton?) {
         print("Add New Member Button Clicked")
-        let addNewMemberVC = AddNewMemberViewController()
+        let addNewMemberVC = NewMemberViewController()
         self.navigationController?.pushViewController(addNewMemberVC, animated: true)
     }
 
