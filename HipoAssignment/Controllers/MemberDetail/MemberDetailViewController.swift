@@ -42,19 +42,20 @@ class MemberDetailViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(MemberDetailTableViewCell.self, forCellReuseIdentifier: "MemberDetailCell")
         setupView()
+        getGithubData()
+        getGithubRepoData()
 
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        getGithubData()
-        getGithubRepoData()
     }
 
     //MARK: - getGithubData
     func getGithubData(){
-        GithubRequest.getGithubData(userName: selectedDetailUserName) { (result) in
+        GithubRequest.getGithubData(userName: selectedDetailUserName) { [weak self] (result) in
             guard let avatarUrl = result.avatar_url, let url = URL(string: avatarUrl), let data = try? Data(contentsOf: url) else { return }
             DispatchQueue.main.async {
+                guard let self = self else { return }
                 self.imageView.image = UIImage(data: data as Data)
                 self.followersLabel.text = NSLocalizedString("Followers \(result.followers ?? 0)", comment: "")
                 self.followingLabel.text = NSLocalizedString("Following \(result.following ?? 0)", comment: "")
@@ -64,9 +65,10 @@ class MemberDetailViewController: UIViewController {
 
     //MARK: - getGithubRepoData
     func getGithubRepoData(){
-        GithubRequest.getGithubRepoData(userName: selectedDetailUserName) { (result) in
-            self.repos = result
+        GithubRequest.getGithubRepoData(userName: selectedDetailUserName) { [weak self] (result) in
             DispatchQueue.main.async {
+                guard let self = self else { return }
+                self.repos = result
                 self.tableView.reloadData()
             }
         }
