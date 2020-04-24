@@ -10,6 +10,7 @@
 		47181B2424522E5E000C011C /* NewMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47181B2324522E5E000C011C /* NewMemberViewController.swift */; };
 		471ADCE32407E716004E9033 /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471ADCE22407E716004E9033 /* Github.swift */; };
 		471ADCE72407F2EE004E9033 /* GithubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471ADCE62407F2EE004E9033 /* GithubRequest.swift */; };
+		474E6BBB2453293E007B4FED /* StaticString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474E6BBA2453293E007B4FED /* StaticString.swift */; };
 		478F2928240A4D0400823C0E /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478F2927240A4D0400823C0E /* UIViewController+Alert.swift */; };
 		478FA6DF24508FE200944F6A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 478FA6E124508FE200944F6A /* Localizable.strings */; };
 		47D2AEED2407BC4A0074F54C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2AEEC2407BC4A0074F54C /* StringExtension.swift */; };
@@ -41,6 +42,7 @@
 		47181B2324522E5E000C011C /* NewMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMemberViewController.swift; sourceTree = "<group>"; };
 		471ADCE22407E716004E9033 /* Github.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Github.swift; sourceTree = "<group>"; };
 		471ADCE62407F2EE004E9033 /* GithubRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRequest.swift; sourceTree = "<group>"; };
+		474E6BBA2453293E007B4FED /* StaticString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticString.swift; sourceTree = "<group>"; };
 		478F2927240A4D0400823C0E /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		478FA6E22450916900944F6A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		478FA6E42450923300944F6A /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				47D385A02407122E007BA0BA /* UIImage.swift */,
 				47D2AEEC2407BC4A0074F54C /* StringExtension.swift */,
 				478F2927240A4D0400823C0E /* UIViewController+Alert.swift */,
+				474E6BBA2453293E007B4FED /* StaticString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				474E6BBB2453293E007B4FED /* StaticString.swift in Sources */,
 				47D385892406B45C007BA0BA /* HipoAssignment.xcdatamodeld in Sources */,
 				47D385A12407122E007BA0BA /* UIImage.swift in Sources */,
 				47D385832406B45C007BA0BA /* MembersViewController.swift in Sources */,

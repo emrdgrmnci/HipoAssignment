@@ -32,7 +32,7 @@ class NewMemberViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-           self.title = NSLocalizedString("Add New Member", comment: "")
+        self.title = NSLocalizedString(LocalizedStrings.addNewMember.rawValue , comment: "")
 
         nameTextField.delegate = self
         positionTextField.delegate = self
@@ -66,10 +66,12 @@ class NewMemberViewController: UIViewController {
 
         scrollView.translatesAutoresizingMaskIntoConstraints = false
 
-        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 
     private func setupContentView() {
@@ -83,27 +85,31 @@ class NewMemberViewController: UIViewController {
 
         contentView.translatesAutoresizingMaskIntoConstraints = false
 
-        contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
-        contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
-        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        ])
     }
 
     private func setupLabel() {
-        nameLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        positionLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        ageLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        locationLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        yearsInHipoLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        githubLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        NSLayoutConstraint.activate([
+            nameLabel.heightAnchor.constraint(equalToConstant: 30),
+            nameLabel.heightAnchor.constraint(equalToConstant: 30),
+            positionLabel.heightAnchor.constraint(equalToConstant: 30),
+            ageLabel.heightAnchor.constraint(equalToConstant: 30),
+            locationLabel.heightAnchor.constraint(equalToConstant: 30),
+            yearsInHipoLabel.heightAnchor.constraint(equalToConstant: 30),
+            githubLabel.heightAnchor.constraint(equalToConstant: 30)
+        ])
 
-        nameLabel.text = NSLocalizedString("Name:", comment: "")
-        positionLabel.text = NSLocalizedString("Position:", comment: "")
-        ageLabel.text = NSLocalizedString("Age:", comment: "")
-        locationLabel.text = NSLocalizedString("Location:", comment: "")
-        yearsInHipoLabel.text = NSLocalizedString("Number of years in Hipo:", comment: "")
-        githubLabel.text = NSLocalizedString("Github:", comment: "")
+        nameLabel.text = NSLocalizedString(LocalizedStrings.name.rawValue, comment: "")
+        positionLabel.text = NSLocalizedString(LocalizedStrings.position.rawValue, comment: "")
+        ageLabel.text = NSLocalizedString(LocalizedStrings.age.rawValue, comment: "")
+        locationLabel.text = NSLocalizedString(LocalizedStrings.location.rawValue, comment: "")
+        yearsInHipoLabel.text = NSLocalizedString(LocalizedStrings.numberOfYearsInHipo.rawValue, comment: "")
+        githubLabel.text = NSLocalizedString(LocalizedStrings.github.rawValue, comment: "")
     }
 
     //MARK: - labelUI
@@ -115,12 +121,12 @@ class NewMemberViewController: UIViewController {
     }
 
     private func setupTextField() {
-        nameTextField.placeholder = NSLocalizedString("Please enter your name", comment: "")
-        positionTextField.placeholder = NSLocalizedString("Please enter your position",comment: "")
-        ageTextField.placeholder = NSLocalizedString("Please enter your age", comment: "")
-        locationTextField.placeholder = NSLocalizedString("Please enter your location", comment: "")
-        yearsInHipoTextField.placeholder = NSLocalizedString("Please enter how many years you worked in Hipo", comment: "")
-        githubTextField.placeholder = NSLocalizedString("Please enter your Github username", comment: "")
+        nameTextField.placeholder =         NSLocalizedString(LocalizedStrings.pleaseEnterYourName.rawValue, comment: "")
+        positionTextField.placeholder =     NSLocalizedString(LocalizedStrings.pleaseEnterYourPosition.rawValue,comment: "")
+        ageTextField.placeholder =          NSLocalizedString(LocalizedStrings.pleaseEnterYourAge.rawValue, comment: "")
+        locationTextField.placeholder =     NSLocalizedString(LocalizedStrings.pleaseEnterYourLocation.rawValue, comment: "")
+        yearsInHipoTextField.placeholder =  NSLocalizedString(LocalizedStrings.pleaseEnterYourHipoYear.rawValue, comment: "")
+        githubTextField.placeholder =       NSLocalizedString(LocalizedStrings.github.rawValue, comment: "")
         [nameTextField, positionTextField, ageTextField, locationTextField, yearsInHipoTextField, githubTextField].forEach {
             NSLayoutConstraint.activate([
                 $0.heightAnchor.constraint(equalToConstant: 50),
@@ -159,10 +165,12 @@ class NewMemberViewController: UIViewController {
         contentView.addArrangedSubview(saveButton)
         saveButton.setTitle("SAVE", for: .normal)
         saveButton.backgroundColor = UIColor(red:0.18, green:0.73, blue:0.31, alpha:1.0)
-        saveButton.topAnchor.constraint(equalTo: githubTextField.bottomAnchor, constant: 77).isActive = true
-        saveButton.widthAnchor.constraint(equalToConstant: 285).isActive = true
-        saveButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         saveButton.layer.cornerRadius = 25
+        NSLayoutConstraint.activate([
+            saveButton.topAnchor.constraint(equalTo: githubTextField.bottomAnchor, constant: 77),
+            saveButton.widthAnchor.constraint(equalToConstant: 285),
+            saveButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
 
     //MARK: - Save User Defaults
@@ -218,10 +226,10 @@ class NewMemberViewController: UIViewController {
         do {
             try context.save()
 
-            let titleSaved = NSLocalizedString("SAVED", comment: "")
-            let messageSaved = NSLocalizedString("New member saved successfully!", comment: "")
+            let titleSaved = NSLocalizedString(LocalizedStrings.capitalizedSaved.rawValue, comment: "")
+            let messageSaved = NSLocalizedString(LocalizedStrings.newMemberSavedSuccessfully.rawValue, comment: "")
 
-            let titleOK = NSLocalizedString("OK", comment: "")
+            let titleOK = NSLocalizedString(LocalizedStrings.capitalizedOk.rawValue, comment: "")
 
             let alert = UIAlertController (title: titleSaved, message: messageSaved, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: titleOK, style: .cancel, handler:{ (alertOKAction) in
@@ -234,8 +242,8 @@ class NewMemberViewController: UIViewController {
             print("Success!")
         } catch {
 
-            let titleError = NSLocalizedString("Error", comment: "")
-            let messageError = NSLocalizedString("New member does not saved successfully!", comment: "")
+            let titleError = NSLocalizedString(LocalizedStrings.error.rawValue, comment: "")
+            let messageError = NSLocalizedString(LocalizedStrings.newMemberDoesNotSavedSuccessfully.rawValue, comment: "")
 
             self.showAlert(withTitle: titleError, withMessage: messageError)
             print(error.localizedDescription)
@@ -247,7 +255,7 @@ extension NewMemberViewController: UITextFieldDelegate {
     //MARK: - Textfield Range
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == nameTextField || textField == positionTextField || textField == locationTextField {
-            let allowedCharacters = "ABCÇDEFGĞHIİJKLMNOÖPQRSŞTUÜVWXYZabcçdefgğhıijklmnoöpqrstuüvwxyz "
+            let allowedCharacters = LocalizedStrings.allowedCharacters.rawValue
             let allowedCharacterSet = CharacterSet(charactersIn: allowedCharacters)
             let typedCharacterSet = CharacterSet(charactersIn: string)
             let alphabet = allowedCharacterSet.isSuperset(of: typedCharacterSet)
@@ -258,7 +266,7 @@ extension NewMemberViewController: UITextFieldDelegate {
             return allowedCharacters.isSuperset(of: characterSet)
         }
         else if textField == githubTextField {
-            let allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_!'^+%&/()=?,;:."
+            let allowedCharacters = LocalizedStrings.allowedCharactersWithSpecialized.rawValue
             let allowedCharacterSet = CharacterSet(charactersIn: allowedCharacters)
             let typedCharacterSet = CharacterSet(charactersIn: string)
             let all = allowedCharacterSet.isSuperset(of: typedCharacterSet)

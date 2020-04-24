@@ -30,7 +30,7 @@ class MembersViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        self.title = NSLocalizedString("Members", comment: "")
+        self.title = NSLocalizedString(LocalizedStrings.members.rawValue, comment: "")
 
         getNewMemberDataToMembersTableView()
 
@@ -103,12 +103,12 @@ class MembersViewController: UIViewController {
         activateAllConstraints()
 
         //MARK: - sort members button layouts
-        sortMembersButton.setTitle(NSLocalizedString("SORT MEMBERS", comment: ""), for: .normal)
+        sortMembersButton.setTitle(NSLocalizedString(LocalizedStrings.sortMembers.rawValue, comment: ""), for: .normal)
         sortMembersButton.backgroundColor = UIColor(red:0.17, green:0.19, blue:0.22, alpha:1.0)
         sortMembersButton.layer.cornerRadius = 25
 
         //MARK: - add new member button layouts
-        addNewMemberButton.setTitle(NSLocalizedString("ADD NEW MEMBER", comment: ""), for: .normal)
+        addNewMemberButton.setTitle(NSLocalizedString(LocalizedStrings.capitalizedAddNewMember.rawValue, comment: ""), for: .normal)
         addNewMemberButton.backgroundColor = UIColor(red:0.18, green:0.73, blue:0.31, alpha:1.0)
         addNewMemberButton.layer.cornerRadius = 25
 
