@@ -186,7 +186,7 @@ extension MembersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard hipoMembers.count != 0 else {return}
-        let memberDetailController = MemberDetailViewController()
+        let memberDetailController = MemberDetailViewController(githubRequest: GithubRequest.init())
         self.navigationController?.pushViewController(memberDetailController, animated: true)
         memberDetailController.delegate = self
         memberDetailController.title = hipoMembers[indexPath.row].name

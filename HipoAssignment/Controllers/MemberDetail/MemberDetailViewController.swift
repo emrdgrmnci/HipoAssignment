@@ -18,6 +18,19 @@ class MemberDetailViewController: UIViewController {
 
     weak var delegate: MembersViewController!
 
+    //Dependency Injection
+    var githubRequest: GithubRequest
+
+    init(githubRequest: GithubRequest) {
+        self.githubRequest = githubRequest
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+
     private var tableView = UITableView()
     private var followersLabel = UILabel()
     private var followingLabel = UILabel()
@@ -47,7 +60,7 @@ class MemberDetailViewController: UIViewController {
     }
 
     func getGithubData() {
-        GithubRequest.githubAPICall(url: URLString.urlForGithub.rawValue + selectedDetailUserName, expectingReturnType: Github.self, completion: { [weak self] result in
+        githubRequest.githubAPICall(url: URLString.urlForGithub.rawValue + selectedDetailUserName, expectingReturnType: Github.self, completion: { [weak self] result in
             switch result {
             case .success(let github):
                 DispatchQueue.main.async {
@@ -63,7 +76,7 @@ class MemberDetailViewController: UIViewController {
     }
     
     func getGithubRepoData(){
-        GithubRequest.githubAPICall(url: URLString.urlForGithub.rawValue + selectedDetailUserName + "/repos", expectingReturnType: [Repo].self, completion: { [weak self] result in
+        githubRequest.githubAPICall(url: URLString.urlForGithub.rawValue + selectedDetailUserName + "/repos", expectingReturnType: [Repo].self, completion: { [weak self] result in
             switch result {
             case .success(let repo):
                 DispatchQueue.main.async {

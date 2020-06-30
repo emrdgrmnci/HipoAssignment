@@ -10,19 +10,17 @@ import Foundation
 
 class GithubRequest{
 
-    static let shared = GithubRequest()
+    init() { }
 
-    static func githubAPICall<T:Codable>(url: String, expectingReturnType: T.Type, completion: @escaping ((Result<T, Error>) -> Void)) {
+    func githubAPICall<T:Codable>(url: String, expectingReturnType: T.Type, completion: @escaping ((Result<T, Error>) -> Void)) {
         let task = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, _, error in
             guard let data = data, error == nil else {
                 return
             }
-
             var decodedResult: T?
             do {
                 decodedResult = try JSONDecoder().decode(T.self, from: data)
             } catch {
-
             }
             guard let result = decodedResult else { return }
             completion(.success(result))
