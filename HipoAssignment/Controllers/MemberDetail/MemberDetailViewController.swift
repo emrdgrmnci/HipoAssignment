@@ -9,29 +9,33 @@
 import UIKit
 import Foundation
 
+enum URLString: String {
+    case urlForGithub = "https://api.github.com/users/"
+}
+
 class MemberDetailViewController: UIViewController {
 
-   private var repos = [Repo]()
-   private var github: Github?
+    private var repos = [Repo]()
+    private var github: Github?
 
     var selectedDetailUserName: String = ""
 
     weak var delegate: MembersViewController!
 
-   private var tableView = UITableView()
-   private var followersLabel = UILabel()
-   private var followingLabel = UILabel()
-   private var imageView = UIImageView()
-   private var indicator = UIActivityIndicatorView()
+    private var tableView = UITableView()
+    private var followersLabel = UILabel()
+    private var followingLabel = UILabel()
+    private var imageView = UIImageView()
+    private var indicator = UIActivityIndicatorView()
 
-   private var profileView: UIView = {
+    private var profileView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(red:0.14, green:0.16, blue:0.18, alpha: 1.0)
         return view
     }()
 
-   private var safeArea: UILayoutGuide!
+    private var safeArea: UILayoutGuide!
 
     // MARK: - View's Lifecycle
     override func viewDidLoad() {
@@ -44,34 +48,38 @@ class MemberDetailViewController: UIViewController {
         setupView()
         getGithubData()
         getGithubRepoData()
-
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-    }
-
-    //MARK: - getGithubData
-    func getGithubData(){
-        GithubRequest.getGithubData(userName: selectedDetailUserName) { [weak self] (result) in
-            guard let avatarUrl = result.avatar_url, let url = URL(string: avatarUrl), let data = try? Data(contentsOf: url) else { return }
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                self.imageView.image = UIImage(data: data as Data)
-                self.followersLabel.text = NSLocalizedString("Followers \(result.followers ?? 0)", comment: "")
-                self.followingLabel.text = NSLocalizedString("Following \(result.following ?? 0)", comment: "")
+    func getGithubData() {
+        GithubRequest.githubAPICall(url: URLString.urlForGithub.rawValue + selectedDetailUserName, expectingReturnType: Github.self, completion: { [weak self] result in
+            switch result {
+            case .success(let github):
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    //                    self.imageView.image = UIImage(data: data as Data)
+                    self.followersLabel.text = NSLocalizedString("Followers \(github.followers.self ?? 0)", comment: "")
+                    self.followingLabel.text = NSLocalizedString("Following \(github.following.self ?? 0)", comment: "")
+                }
+            case .failure(let error):
+                print(error)
             }
-        }
+        })
     }
-
-    //MARK: - getGithubRepoData
+    
     func getGithubRepoData(){
-        GithubRequest.getGithubRepoData(userName: selectedDetailUserName) { [weak self] (result) in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                self.repos = result
-                self.tableView.reloadData()
+        GithubRequest.githubAPICall(url: URLString.urlForGithub.rawValue + selectedDetailUserName + "/repos", expectingReturnType: [Repo].self, completion: { [weak self] result in
+            switch result {
+            case .success(let repo):
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    self.repos = repo.self
+                    self.tableView.reloadData()
+                }
+            case .failure(_):
+                break
             }
-        }
+
+        })
     }
 
     //MARK: - setupView

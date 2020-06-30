@@ -8,40 +8,26 @@
 ////
 import Foundation
 
-let urlForGithubRepo =  "https://api.github.com/users/"
-let urlForGithub = "https://api.github.com/users/"
-
 class GithubRequest{
-    
-    static func getGithubData(userName: String, completion: @escaping (_ result: Github) -> Void) {
-        
-        guard let downloadURL =  URL(string: urlForGithub + userName)  else { return }
-        URLSession.shared.dataTask(with: downloadURL) { data, urlResponse, error in
-            guard let data = data else {return}
-            do{
-                guard let jsonString = String(data: data, encoding: .utf8) else {return}
-                print(jsonString)
-                let downloadedGithub = try JSONDecoder().decode(Github.self, from: data)
-                completion(downloadedGithub)
-            }catch(let err) {
-                print("something went wrong after downloaded",err)
+
+    static let shared = GithubRequest()
+
+    static func githubAPICall<T:Codable>(url: String, expectingReturnType: T.Type, completion: @escaping ((Result<T, Error>) -> Void)) {
+        let task = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, _, error in
+            guard let data = data, error == nil else {
+                return
             }
-        }.resume()
-    }
-    
-    static func getGithubRepoData(userName: String, completion: @escaping (_ result: [Repo]) -> Void) {
-        guard let downloadURL = URL(string: urlForGithubRepo + userName + "/repos")else { return }
-        URLSession.shared.dataTask(with: downloadURL) { data, urlResponse, error in
-            guard let data = data else {return}
-            do{
-                guard let jsonString = String(data: data, encoding: .utf8) else {return}
-                print(jsonString)
-                let downloadedRepos = try JSONDecoder().decode([Repo].self, from: data)
-                completion(downloadedRepos)
-            }catch(let err) {
-                print("something went wrong after downloaded",err)
+
+            var decodedResult: T?
+            do {
+                decodedResult = try JSONDecoder().decode(T.self, from: data)
+            } catch {
+
             }
-        }.resume()
+            guard let result = decodedResult else { return }
+            completion(.success(result))
+        })
+        task.resume()
     }
 }
 
