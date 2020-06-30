@@ -33,3 +33,8 @@ enum LocalizedStrings: String {
     case allowedCharacters = "ABCÇDEFGĞHIİJKLMNOÖPQRSŞTUÜVWXYZabcçdefgğhıijklmnoöpqrstuüvwxyz "
     case allowedCharactersWithSpecialized = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_!'^+%&/()=?,;:."
 }
+
+
+enum URLString: String {
+    case urlForGithub = "https://api.github.com/users/"
+}

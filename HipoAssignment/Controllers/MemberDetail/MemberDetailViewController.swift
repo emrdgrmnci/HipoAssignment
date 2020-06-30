@@ -9,10 +9,6 @@
 import UIKit
 import Foundation
 
-enum URLString: String {
-    case urlForGithub = "https://api.github.com/users/"
-}
-
 class MemberDetailViewController: UIViewController {
 
     private var repos = [Repo]()
